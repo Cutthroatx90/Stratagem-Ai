@@ -10,42 +10,42 @@
         /* Custom styles for the Inter font and general body styling */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #F8F5EE; /* Warm Cream background from logo */
-            color: #2C2C2C; /* Dark text from logo */
+            background-color: #54627B; /* Muted Blue-Gray background */
+            color: #FFFFFF; /* White text for readability on dark background */
         }
         html {
             scroll-behavior: smooth;
         }
-        /* Custom button styling for a more prominent look */
+        /* Custom button styling */
         .btn-primary {
-            /* Now matches the btn-secondary style */
-            @apply bg-[#C49221] text-[#0F3A5C] px-6 py-3 rounded-lg shadow-lg hover:bg-[#B08018] transition duration-300 ease-in-out;
+            /* Increased padding for a more 'bubble box/rectangle' appearance */
+            @apply bg-[#F4B400] text-[#0F3253] px-8 py-4 rounded-lg shadow-lg hover:bg-[#D69F00] transition duration-300 ease-in-out;
         }
         .btn-secondary {
-            /* This class will now be identical to btn-primary visually, but kept for semantic distinction */
-            @apply bg-[#C49221] text-[#0F3A5C] border border-[#C49221] px-6 py-3 rounded-lg shadow-lg hover:bg-[#B08018] transition duration-300 ease-in-out;
+            /* Increased padding for a more 'bubble box/rectangle' appearance */
+            @apply bg-[#F4B400] text-[#0F3253] border border-[#F4B400] px-8 py-4 rounded-lg shadow-lg hover:bg-[#D69F00] transition duration-300 ease-in-out;
         }
-        /* Custom gradient for sections */
-        .section-gradient {
-            background-image: linear-gradient(to right, #0F3A5C, #0D3050); /* Deep blue gradient from logo */
+        /* Custom solid background for sections */
+        .solid-blue-dark {
+            background-color: #0F3253; /* Very Dark Blue from logo */
         }
     </style>
 </head>
 <body class="antialiased">
 
-    <header class="bg-white shadow-sm py-4">
+    <header class="bg-[#0F3253] shadow-sm py-4">
         <nav class="container mx-auto px-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-[#0F3A5C]">
+            <a href="index.html" class="text-2xl font-bold text-white">
                 <img src="images/stratagem-ai-logo.png" alt="Stratagem AI Logo" class="h-10 md:h-12 w-auto">
             </a>
             <div class="hidden md:flex space-x-6">
-                <a href="index.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Home</a>
-                <a href="services.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Services</a>
-                <a href="about.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">About Us</a>
-                <a href="resources.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Resources</a>
-                <a href="contact.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Contact</a>
+                <a href="index.html" class="text-white hover:text-[#F4B400] font-medium">Home</a>
+                <a href="services.html" class="text-white hover:text-[#F4B400] font-medium">Services</a>
+                <a href="about.html" class="text-white hover:text-[#F4B400] font-medium">About Us</a>
+                <a href="resources.html" class="text-white hover:text-[#F4B400] font-medium">Resources</a>
+                <a href="contact.html" class="text-white hover:text-[#F4B400] font-medium">Contact</a>
             </div>
-            <button class="md:hidden text-[#2C2C2C] focus:outline-none">
+            <button class="md:hidden text-white focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
@@ -53,7 +53,7 @@
         </nav>
     </header>
 
-    <section class="section-gradient text-white py-20 md:py-32 rounded-b-xl shadow-lg">
+    <section class="solid-blue-dark text-white py-20 md:py-32 rounded-b-xl shadow-lg">
         <div class="container mx-auto px-4 text-center">
             <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
                 About Stratagem AI: Our Expertise & Vision
@@ -64,19 +64,19 @@
         </div>
     </section>
 
-    <section class="py-16 md:py-24 bg-white">
+    <section class="py-16 md:py-24 bg-white text-[#2C2C2C]">
         <div class="container mx-auto px-4 max-w-4xl">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#0F3A5C]">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#0F3253]">
                 The Foundation of Stratagem AI
             </h2>
-            <div class="space-y-8 text-lg text-[#2C2C2C]">
+            <div class="space-y-8 text-lg">
                 <p>
                     Stratagem AI was founded on a deep passion for transforming small business lending through intelligent, ethical, and compliant AI automation. Our mission is to empower community banks and credit unions to navigate the complexities of modern finance, leveraging cutting-edge AI to optimize underwriting, enhance risk assessment, and ensure sustainable, responsible growth.
                 </p>
                 <p>
                     Our approach is rooted in extensive professional experience in small business lending and financing, comprehensive risk assessments, and practical application of AI automation within the fintech lending space. This includes a proven track record in optimizing risk strategy and developing robust underwriting policies and procedures that drive both efficiency and adherence to regulatory standards.
                 </p>
-                <h3 class="text-2xl font-semibold text-[#0F3A5C] mb-4">
+                <h3 class="text-2xl font-semibold text-[#0F3253] mb-4">
                     Discipline Forged in Service: A Veteran's Commitment
                 </h3>
                 <p>
@@ -85,7 +85,7 @@
                 <p>
                     The discipline, strategic thinking, and commitment to operational excellence honed during military service are directly applied to every client engagement at Stratagem AI. We bring a methodical, results-driven approach to complex problems, ensuring that AI solutions are not just innovative, but also robust, reliable, and meticulously implemented.
                 </p>
-                <h3 class="text-2xl font-semibold text-[#0F3A5C] mb-4">
+                <h3 class="text-2xl font-semibold text-[#0F3253] mb-4">
                     Why Our Experience Matters to You
                 </h3>
                 <p>
@@ -98,27 +98,26 @@
         </div>
     </section>
 
-    <section class="py-16 md:py-24 bg-[#F0ECE1]">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#0F3A5C]">
+    <section class="py-16 md:py-24 bg-[#F0F0F0] text-[#2C2C2C]"> <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#0F3253]">
                 Our Core Principles & Differentiators
             </h2>
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="p-6 rounded-xl shadow-sm border border-gray-200 bg-white">
-                    <h3 class="text-xl font-semibold text-[#0F3A5C] mb-3">Unparalleled Domain Expertise</h3>
-                    <p class="text-[#2C2C2C]">
+                    <h3 class="text-xl font-semibold text-[#0F3253] mb-3">Unparalleled Domain Expertise</h3>
+                    <p>
                         Leveraging a strong background in small business lending, comprehensive risk assessment, and hands-on AI automation in fintech to deliver practical, real-world solutions.
                     </p>
                 </div>
                 <div class="p-6 rounded-xl shadow-sm border border-gray-200 bg-white">
-                    <h3 class="text-xl font-semibold text-[#0F3A5C] mb-3">Compliance & Ethical AI Focus</h3>
-                    <p class="text-[#2C2C2C]">
+                    <h3 class="text-xl font-semibold text-[#0F3253] mb-3">Compliance & Ethical AI Focus</h3>
+                    <p>
                         Specializing in Explainable AI (XAI) and robust risk mitigation strategies to ensure your AI initiatives meet rigorous regulatory standards (ECOA, FCRA) and build public trust.
                     </p>
                 </div>
                 <div class="p-6 rounded-xl shadow-sm border border-gray-200 bg-white">
-                    <h3 class="text-xl font-semibold text-[#0F3A5C] mb-3">Quantifiable, Results-Driven Approach</h3>
-                    <p class="text-[#2C2C2C]">
+                    <h3 class="text-xl font-semibold text-[#0F3253] mb-3">Quantifiable, Results-Driven Approach</h3>
+                    <p>
                         Our aim is clear: to deliver demonstrable ROI – reduced loan defaults, accelerated approval times, and significant cost savings through strategic and responsible AI adoption.
                     </p>
                 </div>
@@ -126,13 +125,13 @@
         </div>
     </section>
 
-    <footer class="bg-gray-800 text-white py-8 rounded-t-xl">
+    <footer class="bg-[#0F3253] text-white py-8 rounded-t-xl">
         <div class="container mx-auto px-4 text-center text-sm">
             <p>&copy; 2025 Stratagem AI. All rights reserved.</p>
             <div class="mt-4 space-x-4">
-                <a href="#" class="hover:text-[#C49221]">Privacy Policy (Placeholder)</a>
-                <a href="#" class="hover:text-[#C49221]">Terms of Service (Placeholder)</a>
-                <a href="https://www.linkedin.com/company/stratagem-ai/" target="_blank" class="hover:text-[#C49221]">LinkedIn</a>
+                <a href="#" class="hover:text-[#F4B400]">Privacy Policy (Placeholder)</a>
+                <a href="#" class="hover:text-[#F4B400]">Terms of Service (Placeholder)</a>
+                <a href="https://www.linkedin.com/company/stratagem-ai/" target="_blank" class="hover:text-[#F4B400]">LinkedIn</a>
             </div>
         </div>
     </footer>
