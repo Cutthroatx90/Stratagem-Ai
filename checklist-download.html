@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,7 +16,8 @@
             @apply bg-[#0F3A5C] text-white px-6 py-3 rounded-lg shadow-lg hover:bg-[#0A2840] transition duration-300 ease-in-out;
         }
         .btn-secondary {
-            @apply bg-white text-[#C49221] border border-[#C49221] px-6 py-3 rounded-lg hover:bg-[#FFF7E8] transition duration-300 ease-in-out;
+            /* Updated styling: Cream background/border, Blue text */
+            @apply bg-[#C49221] text-[#0F3A5C] border border-[#C49221] px-6 py-3 rounded-lg shadow-lg hover:bg-[#B08018] transition duration-300 ease-in-out;
         }
         .section-gradient {
             background-image: linear-gradient(to right, #0F3A5C, #0D3050); /* Deep blue gradient from logo */
@@ -164,11 +165,10 @@
         // Authenticate anonymously when the page loads
         async function authenticateAndInitialize() {
             try {
-                // Use __initial_auth_token if available, otherwise sign in anonymously
-                if (typeof __initial_auth_token !== 'undefined') {
-                    const userCredential = await signInAnonymously(auth); // Changed to signInAnonymously as custom token requires specific setup
-                    userId = userCredential.user.uid;
-                    console.log("Signed in anonymously with custom token (or fallback):", userId);
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInAnonymously(auth);
+                    userId = auth.currentUser.uid;
+                    console.log("Signed in with initial auth token (or fallback to anonymous if token not directly used):", userId);
                 } else {
                     const userCredential = await signInAnonymously(auth);
                     userId = userCredential.user.uid;
@@ -197,22 +197,32 @@
             const businessName = checklistForm.businessName.value.trim();
             const email = emailInput.value.trim().toLowerCase();
 
-            // Basic email format validation
-            if (!email.includes('@') || !email.includes('.')) {
-                emailError.textContent = "Please enter a valid email address.";
+            // --- Enhanced Email Validation ---
+            // 1. Check for basic email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                emailError.textContent = "Please enter a valid email address (e.g., name@company.com).";
                 emailError.classList.remove('hidden');
                 loadingIndicator.classList.add('hidden');
                 return;
             }
 
-            // Extract domain and check against generic list
+            // 2. Extract domain and check against generic list
             const domain = email.split('@')[1];
+            if (!domain) { // Should not happen with regex check, but good for robustness
+                 emailError.textContent = "Invalid email format. Domain missing.";
+                 emailError.classList.remove('hidden');
+                 loadingIndicator.classList.add('hidden');
+                 return;
+            }
+
             if (genericDomains.includes(domain)) {
                 emailError.textContent = "Generic email domains (like Gmail, Yahoo, Hotmail) are not allowed. Please use a business email.";
                 emailError.classList.remove('hidden');
                 loadingIndicator.classList.add('hidden');
                 return;
             }
+            // --- End Enhanced Email Validation ---
 
             // Ensure Firebase is initialized and authenticated
             if (!userId) {
@@ -220,18 +230,22 @@
                 submissionStatus.classList.remove('hidden');
                 loadingIndicator.classList.add('hidden');
                 console.error("Firebase not authenticated. userId is null.");
-                return;
+                // Attempt to re-authenticate if not ready
+                await authenticateAndInitialize();
+                if (!userId) return; // If re-authentication fails, stop
             }
 
             try {
                 // Path for public leads data
+                // Firestore security rules for this path: /artifacts/{appId}/public/data/leads
+                // allow read, write: if request.auth != null;
                 const leadsCollectionRef = collection(db, `artifacts/${appId}/public/data/leads`);
 
                 await addDoc(leadsCollectionRef, {
                     name: name,
                     businessName: businessName,
                     email: email,
-                    timestamp: new Date(),
+                    timestamp: new Date().toISOString(), // Use ISO string for consistent date storage
                     userId: userId // Store the anonymous user ID for tracking
                 });
 
@@ -242,7 +256,7 @@
 
             } catch (error) {
                 console.error("Error adding document to Firestore:", error);
-                submissionStatus.textContent = "Error submitting. Please try again.";
+                submissionStatus.textContent = `Error submitting: ${error.message}. Please try again.`;
                 submissionStatus.classList.remove('hidden');
             } finally {
                 loadingIndicator.classList.add('hidden'); // Hide loading indicator
