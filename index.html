@@ -3,26 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI-Powered Fintech Consulting</title>
+    <title>Stratagem AI - AI-Powered Fintech Consulting</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* Custom styles for the Inter font and general body styling */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* Light gray background */
-            color: #334155; /* Darker gray text */
+            background-color: #F8F5EE; /* Warm Cream background from logo */
+            color: #2C2C2C; /* Dark text from logo */
         }
-        /* Ensures smooth scrolling for anchor links */
+        /* Ensures smooth scrolling for anchor links (for sections within the same page) */
         html {
             scroll-behavior: smooth;
         }
         /* Custom button styling for a more prominent look */
         .btn-primary {
-            @apply bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 ease-in-out;
+            @apply bg-[#0F3A5C] text-white px-6 py-3 rounded-lg shadow-lg hover:bg-[#0A2840] transition duration-300 ease-in-out;
         }
         .btn-secondary {
-            @apply bg-white text-blue-600 border border-blue-600 px-6 py-3 rounded-lg hover:bg-blue-50 transition duration-300 ease-in-out;
+            @apply bg-white text-[#C49221] border border-[#C49221] px-6 py-3 rounded-lg hover:bg-[#FFF7E8] transition duration-300 ease-in-out;
+        }
+        /* Custom gradient for hero */
+        .hero-gradient {
+            background-image: linear-gradient(to right, #0F3A5C, #0D3050); /* Deep blue gradient from logo */
         }
     </style>
 </head>
@@ -30,15 +34,17 @@
 
     <header class="bg-white shadow-sm py-4">
         <nav class="container mx-auto px-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-blue-800">Fintech AI Consult</a>
+            <a href="index.html" class="text-2xl font-bold text-[#0F3A5C]">
+                <img src="images/stratagem-ai-logo.png" alt="Stratagem AI Logo" class="h-10 md:h-12 w-auto">
+            </a>
             <div class="hidden md:flex space-x-6">
-                <a href="#hero" class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
-                <a href="#services" class="text-gray-700 hover:text-blue-600 font-medium">Services</a>
-                <a href="#about" class="text-gray-700 hover:text-blue-600 font-medium">About Us</a>
-                <a href="#resources" class="text-gray-700 hover:text-blue-600 font-medium">Resources</a>
-                <a href="#contact" class="text-gray-700 hover:text-blue-600 font-medium">Contact</a>
+                <a href="index.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Home</a>
+                <a href="services.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Services</a>
+                <a href="about.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">About Us</a>
+                <a href="resources.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Resources</a>
+                <a href="contact.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Contact</a>
             </div>
-            <button class="md:hidden text-gray-700 focus:outline-none">
+            <button class="md:hidden text-[#2C2C2C] focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
@@ -46,178 +52,88 @@
         </nav>
     </header>
 
-    <section id="hero" class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20 md:py-32 rounded-b-xl shadow-lg">
+    <section id="hero" class="hero-gradient text-white py-20 md:py-32 rounded-b-xl shadow-lg">
         <div class="container mx-auto px-4 text-center">
             <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
-                Empowering Community Banks & Credit Unions with <br class="hidden md:inline"> Compliant AI Underwriting & Risk Optimization
+                AI-Powered Underwriting & Risk Optimization for <br class="hidden md:inline"> Community Banks & Credit Unions. Ensure Compliant Growth.
             </h1>
             <p class="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-90">
-                Unlock efficient, ethical, and transparent lending. We bridge the gap between AI potential and responsible deployment.
+                Unlock efficient, ethical, and transparent lending. We bridge the gap between AI potential and responsible deployment, turning regulatory challenges into competitive advantages.
             </p>
             <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <a href="#contact" class="btn-primary">Schedule a Discovery Call</a>
-                <a href="#resources" class="btn-secondary">Download Our AI Readiness Checklist</a>
+                <a href="contact.html" class="btn-primary">Schedule Your Free Discovery Call</a>
+                <a href="resources.html" class="btn-secondary">Download Our AI Readiness & Compliance Checklist</a>
             </div>
         </div>
     </section>
 
     <section id="problem-solution" class="py-16 md:py-24 bg-white">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-blue-800">
-                The Challenge: Modernizing Lending in a Complex Landscape
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#0F3A5C]">
+                The AI Adoption Paradox: Why Small Lenders Struggle to Modernize
             </h2>
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="space-y-6">
-                    <p class="text-lg text-gray-700">
-                        Community banks and credit unions face unique hurdles in today's fast-paced financial world.
-                        Outdated legacy systems, fragmented data, and a growing AI skill gap often hinder efficiency and growth.
+                    <p class="text-lg text-[#2C2C2C]">
+                        While the demand for AI in small business lending is clear, many community banks and credit unions face significant internal challenges that slow adoption and hinder ROI.
                     </p>
-                    <ul class="list-disc list-inside text-gray-700 text-lg space-y-2 pl-4">
-                        <li>Struggling with slow, manual underwriting processes.</li>
-                        <li>Concerns about regulatory compliance and AI bias.</li>
-                        <li>Difficulty integrating new technologies with existing infrastructure.</li>
-                        <li>Missing out on the competitive edge AI offers.</li>
+                    <ul class="list-disc list-inside text-[#2C2C2C] text-lg space-y-2 pl-4">
+                        <li>**Fragmented Data & Legacy Systems:** Siloed data and outdated infrastructure impede effective AI deployment.</li>
+                        <li>**AI Skill Gaps:** Over half of financial institutions struggle with internal AI expertise.</li>
+                        <li>**Regulatory Scrutiny:** Concerns over algorithmic bias, data privacy, and the need for Explainable AI (XAI) add complexity.</li>
+                        <li>**Subpar ROI:** Many achieve lackluster results from AI investments due to a lack of foundational understanding.</li>
                     </ul>
                 </div>
                 <div class="space-y-6">
-                    <h3 class="text-2xl font-semibold text-blue-700 mb-4">Our Solution: Strategic AI Integration for Compliant Growth</h3>
-                    <p class="text-lg text-gray-700">
-                        We provide tailored AI-powered solutions that empower you to overcome these challenges,
-                        ensuring your lending operations are not only efficient but also fully compliant and ethical.
+                    <h3 class="text-2xl font-semibold text-[#0F3A5C] mb-4">Our Solution: Responsible AI Integration for Sustainable Growth</h3>
+                    <p class="text-lg text-[#2C2C2C]">
+                        We transform these challenges into opportunities. With deep expertise in risk strategy and process optimization, we help you implement AI effectively, compliantly, and profitably.
                     </p>
-                    <ul class="list-disc list-inside text-gray-700 text-lg space-y-2 pl-4">
-                        <li>Accelerate loan approvals and reduce defaults.</li>
-                        <li>Implement Explainable AI (XAI) for transparency and trust.</li>
-                        <li>Streamline workflows and optimize risk assessment.</li>
-                        <li>Ensure adherence to fair lending laws and data privacy regulations.</li>
+                    <ul class="list-disc list-inside text-[#2C2C2C] text-lg space-y-2 pl-4">
+                        <li>**Accelerate Approvals & Reduce Defaults:** Leveraging AI to improve efficiency and accuracy in underwriting.</li>
+                        <li>**Ensure Fair Lending & Transparency:** Implement Explainable AI (XAI) to meet CFPB guidance and build trust.</li>
+                        <li>**Optimize Risk Management:** Enhance fraud detection and compliance through advanced AI models.</li>
+                        <li>**Unlock Hidden Opportunities:** Expand access to credit for underserved populations using alternative data sources.</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="services" class="py-16 md:py-24 bg-gray-50">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-blue-800">
-                Our Core AI-Powered Consulting Services
+    <section class="py-16 md:py-24 bg-[#F0ECE1] text-center"> <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-[#0F3A5C] mb-6">
+                Our Specialized AI Consulting Services
             </h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition duration-300 ease-in-out border border-gray-200">
-                    <h3 class="text-2xl font-semibold text-blue-700 mb-4">AI Underwriting Readiness & Explainability Assessment</h3>
-                    <p class="text-gray-700 mb-4">
-                        A focused engagement to review your current underwriting workflows, assess data infrastructure,
-                        and provide a clear roadmap for AI adoption, integrating crucial Explainable AI (XAI) principles.
-                    </p>
-                    <ul class="list-disc list-inside text-gray-600 text-left pl-4 space-y-1">
-                        <li>Identify quick wins for automation.</li>
-                        <li>Assess data quality and readiness.</li>
-                        <li>Preliminary XAI framework for compliance.</li>
-                    </ul>
-                </div>
-                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition duration-300 ease-in-out border border-gray-200">
-                    <h3 class="text-2xl font-semibold text-blue-700 mb-4">AI Risk Model Audit & Optimization with XAI Focus</h3>
-                    <p class="text-gray-700 mb-4">
-                        An in-depth audit of your existing risk models for accuracy, efficiency, and potential biases.
-                        We propose strategies for transparent and auditable AI-driven risk assessments.
-                    </p>
-                    <ul class="list-disc list-inside text-gray-600 text-left pl-4 space-y-1">
-                        <li>Pinpoint areas for improved accuracy.</li>
-                        <li>Concrete strategies for transparent AI decisions.</li>
-                        <li>Ensure full regulatory adherence.</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="mt-12">
-                <a href="#contact" class="btn-primary">Learn More About Our Services</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="py-16 md:py-24 bg-white">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-blue-800">
-                Why Partner with Fintech AI Consult?
-            </h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-6 rounded-xl shadow-sm border border-gray-200 bg-gray-50">
-                    <h3 class="text-xl font-semibold text-blue-700 mb-3">Deep Domain Expertise</h3>
-                    <p class="text-gray-700">
-                        Extensive background in small business lending, risk assessment, and fintech AI automation.
-                    </p>
-                </div>
-                <div class="p-6 rounded-xl shadow-sm border border-gray-200 bg-gray-50">
-                    <h3 class="text-xl font-semibold text-blue-700 mb-3">Compliance-First Approach</h3>
-                    <p class="text-gray-700">
-                        Specializing in Explainable AI (XAI) to ensure regulatory adherence and ethical decision-making.
-                    </p>
-                </div>
-                <div class="p-6 rounded-xl shadow-sm border border-gray-200 bg-gray-50">
-                    <h3 class="text-xl font-semibold text-blue-700 mb-3">Tangible, Measurable Results</h3>
-                    <p class="text-gray-700">
-                        Focused on delivering quantifiable value: reduced defaults, faster approvals, clear ROI.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="testimonials" class="py-16 md:py-24 bg-blue-50">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-blue-800">
-                What Our Clients Say
-            </h2>
-            <div class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-lg border border-blue-200">
-                <p class="text-xl italic text-gray-700 mb-6">
-                    "Fintech AI Consult transformed our underwriting process. Their expertise in AI and compliance was invaluable, leading to faster approvals and greater confidence in our risk models."
-                </p>
-                <p class="font-semibold text-blue-700">- [Client Name], [Title], [Community Bank/Credit Union Name]</p>
-                <p class="text-sm text-gray-500 mt-2">*(Placeholder - Actual testimonials will be added here)*</p>
-            </div>
+            <p class="text-lg text-[#2C2C2C] mb-8 max-w-2xl mx-auto">
+                We offer tailored solutions designed to meet the unique needs of community banks and credit unions, focusing on compliant AI adoption and measurable results.
+            </p>
             <div class="mt-8">
-                <a href="#contact" class="btn-secondary">Read More Success Stories</a>
+                <a href="services.html" class="btn-primary">Explore All Our Services</a>
             </div>
         </div>
     </section>
 
-    <section id="resources" class="py-16 md:py-24 bg-gradient-to-r from-blue-700 to-blue-900 text-white rounded-t-xl shadow-lg">
-        <div class="container mx-auto px-4 text-center">
+    <section class="py-16 md:py-24 hero-gradient text-white rounded-t-xl shadow-lg text-center">
+        <div class="container mx-auto px-4">
             <h2 class="text-3xl md:text-4xl font-bold mb-6">
-                Ready to Optimize Your Lending with AI?
+                Access Valuable Resources
             </h2>
             <p class="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-90">
-                Download our free "AI Underwriting Readiness Checklist" to assess your institution's potential for compliant AI integration.
+                Download our free "AI Underwriting Readiness & Compliance Checklist" and explore our insights to stay ahead in fintech.
             </p>
-            <a href="#" class="btn-primary bg-white text-blue-700 hover:bg-gray-100">
-                Download Your Free Checklist
+            <a href="resources.html" class="btn-primary bg-white text-[#0F3A5C] hover:bg-gray-100">
+                Get Free Resources
             </a>
-        </div>
-    </section>
-
-    <section id="contact" class="py-16 md:py-24 bg-white">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-blue-800">
-                Let's Discuss Your AI Transformation
-            </h2>
-            <p class="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
-                Ready to explore how AI can enhance your underwriting and risk management?
-                Schedule a no-obligation discovery call with our expert team.
-            </p>
-            <a href="mailto:info@fintechaconsult.com" class="btn-primary">
-                Contact Us Today
-            </a>
-            <p class="text-gray-500 text-sm mt-4">
-                You can also schedule a call directly via our <a href="#" class="text-blue-600 hover:underline">Calendly link (placeholder)</a>.
-            </p>
         </div>
     </section>
 
     <footer class="bg-gray-800 text-white py-8 rounded-t-xl">
         <div class="container mx-auto px-4 text-center text-sm">
-            <p>&copy; 2025 Fintech AI Consult. All rights reserved.</p>
+            <p>&copy; 2025 Stratagem AI. All rights reserved.</p>
             <div class="mt-4 space-x-4">
-                <a href="#" class="hover:text-blue-400">Privacy Policy (Placeholder)</a>
-                <a href="#" class="hover:text-blue-400">Terms of Service (Placeholder)</a>
-                <a href="https://www.linkedin.com/company/fintech-ai-consult" target="_blank" class="hover:text-blue-400">LinkedIn</a>
+                <a href="#" class="hover:text-[#C49221]">Privacy Policy (Placeholder)</a>
+                <a href="#" class="hover:text-[#C49221]">Terms of Service (Placeholder)</a>
+                <a href="https://www.linkedin.com/company/stratagem-ai/" target="_blank" class="hover:text-[#C49221]">LinkedIn</a>
             </div>
         </div>
     </footer>
