@@ -115,149 +115,7 @@
         </div>
     </footer>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // Firebase configuration (provided by Canvas environment)
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = {
-  apiKey: "AIzaSyCVJQE6ZwgpN9H1kdPyg3ZuvJne891M9h8",
-  authDomain: "lead-generation-website-a6fee.firebaseapp.com",
-  projectId: "lead-generation-website-a6fee",
-  storageBucket: "lead-generation-website-a6fee.firebasestorage.app",
-  messagingSenderId: "251571123282",
-  appId: "1:251571123282:web:04c5bdbe46e6228809db8b",
-  measurementId: "G-XLD2182833"
-};
-
-        // Initialize Firebase
-	console.log("Using firebaseConfig:", firebaseConfig);
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const auth = getAuth(app);
-
-        let userId = null; // To store the user ID after authentication
-
-        // Generic email domains to exclude
-        const genericDomains = [
-            'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com',
-            'icloud.com', 'protonmail.com', 'mail.com', 'gmx.com', 'yandex.com',
-            'zoho.com', 'live.com', 'msn.com', 'web.de', 'freenet.de', 'libero.it',
-            'qq.com', '163.com', '126.com', 'sina.com', 'sohu.com'
-        ];
-
-        // Get elements
-        const checklistForm = document.getElementById('checklistForm');
-        const emailInput = document.getElementById('email');
-        const emailError = document.getElementById('emailError');
-        const loadingIndicator = document.getElementById('loadingIndicator');
-        const submissionStatus = document.getElementById('submissionStatus');
-        const downloadModal = document.getElementById('downloadModal');
-        const closeModalButton = document.getElementById('closeModal');
-
-        // Function to show modal
-        function showModal() {
-            downloadModal.classList.remove('hidden');
-        }
-
-        // Function to hide modal
-        function hideModal() {
-            downloadModal.classList.add('hidden');
-        }
-
-        // Close modal button event listener
-        closeModalButton.addEventListener('click', hideModal);
-
-        // Authenticate anonymously when the page loads
-        async function authenticateAndInitialize() {
-            try {
-                // Use __initial_auth_token if available, otherwise sign in anonymously
-                if (typeof __initial_auth_token !== 'undefined') {
-                    const userCredential = await signInAnonymously(auth); // Changed to signInAnonymously as custom token requires specific setup
-                    userId = userCredential.user.uid;
-                    console.log("Signed in anonymously with custom token (or fallback):", userId);
-                } else {
-                    const userCredential = await signInAnonymously(auth);
-                    userId = userCredential.user.uid;
-                    console.log("Signed in anonymously:", userId);
-                }
-            } catch (error) {
-                console.error("Firebase authentication error:", error);
-                submissionStatus.textContent = "Error initializing. Please try again.";
-                submissionStatus.classList.remove('hidden');
-                loadingIndicator.classList.add('hidden');
-            }
-        }
-
-        // Call authentication on page load
-        authenticateAndInitialize();
-
-
-        checklistForm.addEventListener('submit', async (e) => {
-            e.preventDefault(); // Prevent default form submission
-
-            emailError.classList.add('hidden'); // Hide previous error messages
-            submissionStatus.classList.add('hidden'); // Hide previous status messages
-            loadingIndicator.classList.remove('hidden'); // Show loading indicator
-
-            const name = checklistForm.name.value.trim();
-            const businessName = checklistForm.businessName.value.trim();
-            const email = emailInput.value.trim().toLowerCase();
-
-            // Basic email format validation
-            if (!email.includes('@') || !email.includes('.')) {
-                emailError.textContent = "Please enter a valid email address.";
-                emailError.classList.remove('hidden');
-                loadingIndicator.classList.add('hidden');
-                return;
-            }
-
-            // Extract domain and check against generic list
-            const domain = email.split('@')[1];
-            if (genericDomains.includes(domain)) {
-                emailError.textContent = "Generic email domains (like Gmail, Yahoo, Hotmail) are not allowed. Please use a business email.";
-                emailError.classList.remove('hidden');
-                loadingIndicator.classList.add('hidden');
-                return;
-            }
-
-            // Ensure Firebase is initialized and authenticated
-            if (!userId) {
-                submissionStatus.textContent = "Authentication not ready. Please wait a moment and try again.";
-                submissionStatus.classList.remove('hidden');
-                loadingIndicator.classList.add('hidden');
-                console.error("Firebase not authenticated. userId is null.");
-                return;
-            }
-
-            try {
-                // Path for public leads data
-                const leadsCollectionRef = collection(db, `artifacts/${appId}/public/data/leads`);
-
-                await addDoc(leadsCollectionRef, {
-                    name: name,
-                    businessName: businessName,
-                    email: email,
-                    timestamp: new Date(),
-                    userId: userId // Store the anonymous user ID for tracking
-                });
-
-                submissionStatus.textContent = "Success! Your details have been recorded.";
-                submissionStatus.classList.remove('hidden');
-                checklistForm.reset(); // Clear the form
-                showModal(); // Show the download modal
-
-            } catch (error) {
-                console.error("Error adding document to Firestore:", error);
-                submissionStatus.textContent = "Error submitting. Please try again.";
-                submissionStatus.classList.remove('hidden');
-            } finally {
-                loadingIndicator.classList.add('hidden'); // Hide loading indicator
-            }
-        });
-    </script>
+   
 </body>
 </html>
 <!DOCTYPE html>
@@ -377,17 +235,37 @@
             </div>
         </div>
     </footer>
-
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+<script type="module">
+        import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Firebase configuration (provided by Canvas environment)
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        // Firebase configuration (values from your provided code/console logs)
+        // Please ensure these match your Firebase Project Settings exactly.
+        const firebaseConfig = {
+            apiKey: "AIzaSyCVJQE6ZwgpN9H1kdPyg3ZuvJne891M9h8",
+            authDomain: "lead-generation-website-a6fee.firebaseapp.com",
+            projectId: "lead-generation-website-a6fee",
+            storageBucket: "lead-generation-website-a6fee.firebasestorage.app", // Using the value you provided
+            messagingSenderId: "251571123282",
+            appId: "1:251571123282:web:04c5bdbe46e6228809db8b", // This is the Web App ID
+            measurementId: "G-XLD2182833"
+        };
 
+        console.log("Attempting to initialize Firebase with config:", firebaseConfig);
 
+        // Initialize Firebase robustly (prevents "duplicate-app" error)
+        let app;
+        if (getApps().length === 0) {
+            app = initializeApp(firebaseConfig);
+            console.log("Firebase Initialized a new app.");
+        } else {
+            app = getApp(); // Get the already initialized app
+            console.log("Firebase app already exists, getting instance.");
+        }
+
+        const db = getFirestore(app);
+        const auth = getAuth(app);
 
         let userId = null; // To store the user ID after authentication
 
@@ -399,8 +277,10 @@
             'qq.com', '163.com', '126.com', 'sina.com', 'sohu.com'
         ];
 
-        // Get elements
+        // Get DOM elements
         const checklistForm = document.getElementById('checklistForm');
+        const nameInput = document.getElementById('name');
+        const businessNameInput = document.getElementById('businessName');
         const emailInput = document.getElementById('email');
         const emailError = document.getElementById('emailError');
         const loadingIndicator = document.getElementById('loadingIndicator');
@@ -410,117 +290,120 @@
 
         // Function to show modal
         function showModal() {
-            downloadModal.classList.remove('hidden');
+            if(downloadModal) downloadModal.classList.remove('hidden');
         }
 
         // Function to hide modal
         function hideModal() {
-            downloadModal.classList.add('hidden');
+            if(downloadModal) downloadModal.classList.add('hidden');
         }
 
         // Close modal button event listener
-        closeModalButton.addEventListener('click', hideModal);
+        if(closeModalButton) {
+            closeModalButton.addEventListener('click', hideModal);
+        }
 
-        // Authenticate anonymously when the page loads
-        async function authenticateAndInitialize() {
+        // Authenticate user anonymously when the page loads
+        async function authenticateUser() {
+            if (!auth) {
+                console.error("Firebase Auth service is not available for anonymous sign-in.");
+                if(submissionStatus) submissionStatus.textContent = "Error initializing auth. Please try again.";
+                if(submissionStatus) submissionStatus.classList.remove('hidden');
+                if(loadingIndicator) loadingIndicator.classList.add('hidden');
+                return;
+            }
             try {
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    await signInAnonymously(auth);
-                    userId = auth.currentUser.uid;
-                    console.log("Signed in with initial auth token (or fallback to anonymous if token not directly used):", userId);
-                } else {
-                    const userCredential = await signInAnonymously(auth);
-                    userId = userCredential.user.uid;
-                    console.log("Signed in anonymously:", userId);
-                }
+                const userCredential = await signInAnonymously(auth);
+                userId = userCredential.user.uid;
+                console.log("Signed in anonymously:", userId);
             } catch (error) {
-                console.error("Firebase authentication error:", error);
-                submissionStatus.textContent = "Error initializing. Please try again.";
-                submissionStatus.classList.remove('hidden');
-                loadingIndicator.classList.add('hidden');
+                console.error("Firebase anonymous authentication error:", error);
+                if(submissionStatus) submissionStatus.textContent = "Error during anonymous authentication. Refresh and try again.";
+                if(submissionStatus) submissionStatus.classList.remove('hidden');
+                if(loadingIndicator) loadingIndicator.classList.add('hidden');
             }
         }
 
-        // Call authentication on page load
-        authenticateAndInitialize();
+        // Call authentication after DOM is loaded and Firebase app is potentially initialized
+        // Ensuring 'auth' object is ready.
+        if (app) { // Check if Firebase app is initialized before trying to authenticate
+             authenticateUser();
+        } else {
+            console.error("Firebase app not initialized before calling authenticateUser.");
+        }
 
 
-        checklistForm.addEventListener('submit', async (e) => {
-            e.preventDefault(); // Prevent default form submission
+        if(checklistForm) {
+            checklistForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
 
-            emailError.classList.add('hidden'); // Hide previous error messages
-            submissionStatus.classList.add('hidden'); // Hide previous status messages
-            loadingIndicator.classList.remove('hidden'); // Show loading indicator
+                if(emailError) emailError.classList.add('hidden');
+                if(submissionStatus) submissionStatus.classList.add('hidden');
+                if(loadingIndicator) loadingIndicator.classList.remove('hidden');
 
-            const name = checklistForm.name.value.trim();
-            const businessName = checklistForm.businessName.value.trim();
-            const email = emailInput.value.trim().toLowerCase();
+                const name = nameInput.value.trim();
+                const businessName = businessNameInput.value.trim();
+                const email = emailInput.value.trim().toLowerCase();
 
-            // --- Enhanced Email Validation ---
-            // 1. Check for basic email format
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                emailError.textContent = "Please enter a valid email address (e.g., name@company.com).";
-                emailError.classList.remove('hidden');
-                loadingIndicator.classList.add('hidden');
-                return;
-            }
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    if(emailError) emailError.textContent = "Please enter a valid email address (e.g., name@company.com).";
+                    if(emailError) emailError.classList.remove('hidden');
+                    if(loadingIndicator) loadingIndicator.classList.add('hidden');
+                    return;
+                }
 
-            // 2. Extract domain and check against generic list
-            const domain = email.split('@')[1];
-            if (!domain) { // Should not happen with regex check, but good for robustness
-                 emailError.textContent = "Invalid email format. Domain missing.";
-                 emailError.classList.remove('hidden');
-                 loadingIndicator.classList.add('hidden');
-                 return;
-            }
+                const domain = email.split('@')[1];
+                if (!domain) {
+                     if(emailError) emailError.textContent = "Invalid email format. Domain missing.";
+                     if(emailError) emailError.classList.remove('hidden');
+                     if(loadingIndicator) loadingIndicator.classList.add('hidden');
+                     return;
+                }
+                if (genericDomains.includes(domain)) {
+                    if(emailError) emailError.textContent = "Generic email domains (like Gmail, Yahoo, Hotmail) are not allowed. Please use a business email.";
+                    if(emailError) emailError.classList.remove('hidden');
+                    if(loadingIndicator) loadingIndicator.classList.add('hidden');
+                    return;
+                }
 
-            if (genericDomains.includes(domain)) {
-                emailError.textContent = "Generic email domains (like Gmail, Yahoo, Hotmail) are not allowed. Please use a business email.";
-                emailError.classList.remove('hidden');
-                loadingIndicator.classList.add('hidden');
-                return;
-            }
-            // --- End Enhanced Email Validation ---
+                if (!userId) {
+                    if(submissionStatus) submissionStatus.textContent = "Authentication not ready. Please refresh and try again.";
+                    if(submissionStatus) submissionStatus.classList.remove('hidden');
+                    if(loadingIndicator) loadingIndicator.classList.add('hidden');
+                    console.error("Firebase not authenticated for submission. userId is null.");
+                    return;
+                }
 
-            // Ensure Firebase is initialized and authenticated
-            if (!userId) {
-                submissionStatus.textContent = "Authentication not ready. Please wait a moment and try again.";
-                submissionStatus.classList.remove('hidden');
-                loadingIndicator.classList.add('hidden');
-                console.error("Firebase not authenticated. userId is null.");
-                // Attempt to re-authenticate if not ready
-                await authenticateAndInitialize();
-                if (!userId) return; // If re-authentication fails, stop
-            }
+                try {
+                    // Using top-level "leads" collection as per your "Scenario A" confirmation
+                    const leadsCollectionRef = collection(db, "leads");
 
-            try {
-                // Path for public leads data
-                // Firestore security rules for this path: /artifacts/{appId}/public/data/leads
-                // allow read, write: if request.auth != null;
-                const leadsCollectionRef = collection(db, `artifacts/${appId}/public/data/leads`);
+                    await addDoc(leadsCollectionRef, {
+                        name: name,
+                        businessName: businessName,
+                        email: email,
+                        timestamp: serverTimestamp(), // Uses Firestore server's timestamp
+                        userId: userId
+                    });
 
-                await addDoc(leadsCollectionRef, {
-                    name: name,
-                    businessName: businessName,
-                    email: email,
-                    timestamp: new Date().toISOString(), // Use ISO string for consistent date storage
-                    userId: userId // Store the anonymous user ID for tracking
-                });
+                    if(submissionStatus) submissionStatus.textContent = "Success! Your details have been recorded.";
+                    if(submissionStatus) submissionStatus.classList.remove('hidden');
+                    if(checklistForm) checklistForm.reset();
+                    showModal();
 
-                submissionStatus.textContent = "Success! Your details have been recorded.";
-                submissionStatus.classList.remove('hidden');
-                checklistForm.reset(); // Clear the form
-                showModal(); // Show the download modal
-
-            } catch (error) {
-                console.error("Error adding document to Firestore:", error);
-                submissionStatus.textContent = `Error submitting: ${error.message}. Please try again.`;
-                submissionStatus.classList.remove('hidden');
-            } finally {
-                loadingIndicator.classList.add('hidden'); // Hide loading indicator
-            }
-        });
+                } catch (error) {
+                    console.error("Error adding document to Firestore:", error);
+                    if(submissionStatus) submissionStatus.textContent = `Error submitting: ${error.message}. Please try again.`;
+                    if(submissionStatus) submissionStatus.classList.remove('hidden');
+                } finally {
+                    if(loadingIndicator) loadingIndicator.classList.add('hidden');
+                }
+            });
+        } else {
+            console.error("Checklist form (checklistForm) not found on this page!");
+        }
     </script>
+    
 </body>
 </html>
