@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="dist/output.css" rel="stylesheet">
     <style>
-        /* Minimal fallback styles */
+        /* Minimal fallback styles - primary styling should come from output.css */
         html {
             scroll-behavior: smooth;
             font-family: 'Inter', sans-serif;
@@ -96,21 +96,19 @@
         </div>
     </footer>
 
-<<<<<<< HEAD
     <script type="module">
         import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Firebase configuration (values from your provided code/console logs)
-        // Please ensure these match your Firebase Project Settings exactly.
+        // Firebase configuration (values from your previous console logs - ensure these are correct)
         const firebaseConfig = {
             apiKey: "AIzaSyCVJQE6ZwgpN9H1kdPyg3ZuvJne891M9h8",
             authDomain: "lead-generation-website-a6fee.firebaseapp.com",
             projectId: "lead-generation-website-a6fee",
-            storageBucket: "lead-generation-website-a6fee.firebasestorage.app", // Using the value you provided
+            storageBucket: "lead-generation-website-a6fee.firebasestorage.app", 
             messagingSenderId: "251571123282",
-            appId: "1:251571123282:web:04c5bdbe46e6228809db8b", // This is the Web App ID
+            appId: "1:251571123282:web:04c5bdbe46e6228809db8b", 
             measurementId: "G-XLD2182833"
         };
 
@@ -129,9 +127,8 @@
         const db = getFirestore(app);
         const auth = getAuth(app);
 
-        let userId = null; // To store the user ID after authentication
+        let userId = null; 
 
-        // Generic email domains to exclude
         const genericDomains = [
             'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com',
             'icloud.com', 'protonmail.com', 'mail.com', 'gmx.com', 'yandex.com',
@@ -139,7 +136,6 @@
             'qq.com', '163.com', '126.com', 'sina.com', 'sohu.com'
         ];
 
-        // Get DOM elements
         const checklistForm = document.getElementById('checklistForm');
         const nameInput = document.getElementById('name');
         const businessNameInput = document.getElementById('businessName');
@@ -150,22 +146,18 @@
         const downloadModal = document.getElementById('downloadModal');
         const closeModalButton = document.getElementById('closeModal');
 
-        // Function to show modal
         function showModal() {
             if(downloadModal) downloadModal.classList.remove('hidden');
         }
 
-        // Function to hide modal
         function hideModal() {
             if(downloadModal) downloadModal.classList.add('hidden');
         }
 
-        // Close modal button event listener
         if(closeModalButton) {
             closeModalButton.addEventListener('click', hideModal);
         }
 
-        // Authenticate user anonymously when the page loads
         async function authenticateUser() {
             if (!auth) {
                 console.error("Firebase Auth service is not available for anonymous sign-in.");
@@ -186,14 +178,12 @@
             }
         }
 
-        // Call authentication after DOM is loaded and Firebase app is potentially initialized
         if (app) { 
              authenticateUser();
         } else {
             console.error("Firebase app not initialized before calling authenticateUser.");
         }
 
-
         if(checklistForm) {
             checklistForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
@@ -237,8 +227,7 @@
                 }
 
                 try {
-                    // Using top-level "leads" collection as per your "Scenario A" confirmation
-                    const leadsCollectionRef = collection(db, "leads");
+                    const leadsCollectionRef = collection(db, "leads"); // Using top-level "leads" collection
 
                     await addDoc(leadsCollectionRef, {
                         name: name,
@@ -267,297 +256,4 @@
     </script>
 </body>
 </html>
-=======
-   
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download Checklist - Stratagem AI</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #DCE6F0; /* New light gray/cream background */
-            color: #2C2C2C; /* Dark text for readability on light background */
-        }
-        .btn-primary {
-            /* Applied bubble box/rectangle look with corrected color hex */
-            @apply bg-[#F4B400] text-[#0F3253] p-10 rounded-3xl shadow-lg hover:bg-[#D69F00] transition duration-300 ease-in-out;
-        }
-        .btn-secondary {
-            /* Applied bubble box/rectangle look with corrected color hex */
-            @apply bg-[#F4B400] text-[#0F3253] border border-[#F4B400] p-10 rounded-3xl shadow-lg hover:bg-[#D69F00] transition duration-300 ease-in-out;
-        }
-        .solid-blue-dark {
-            background-color: #0F3253; /* Very Dark Blue from logo */
-        }
-        .form-input {
-            @apply w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#F4B400] focus:border-transparent transition duration-200 ease-in-out;
-        }
-        .error-message {
-            @apply text-red-600 text-sm mt-1;
-        }
-        .success-message {
-            @apply text-green-600 text-base mt-4 font-semibold;
-        }
-        .modal {
-            @apply fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center p-4 z-50;
-        }
-        .modal-content {
-            @apply bg-white p-8 rounded-lg shadow-xl max-w-md w-full text-center;
-        }
-    </style>
-</head>
-<body class="antialiased">
 
-    <header class="bg-[#DCE6F0] shadow-sm py-4">
-        <nav class="container mx-auto px-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-[#0F3253]">
-                <img src="images/stratagem-ai-logo.png" alt="Stratagem AI Logo" class="h-10 md:h-12 w-auto">
-            </a>
-            <div class="hidden md:flex space-x-6">
-                <a href="index.html" class="text-[#0F3253] hover:text-[#F4B400] font-medium">Home</a>
-                <a href="services.html" class="text-[#0F3253] hover:text-[#F4B400] font-medium">Services</a>
-                <a href="about.html" class="text-[#0F3253] hover:text-[#F4B400] font-medium">About Us</a>
-                <a href="resources.html" class="text-[#0F3253] hover:text-[#F4B400] font-medium">Resources</a>
-                <a href="contact.html" class="text-[#0F3253] hover:text-[#F4B400] font-medium">Contact</a>
-            </div>
-            <button class="md:hidden text-[#0F3253] focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                </svg>
-            </button>
-        </nav>
-    </header>
-
-    <section class="py-16 md:py-24 bg-white text-[#2C2C2C]">
-        <div class="container mx-auto px-4 text-center max-w-2xl">
-            <h1 class="text-3xl md:text-4xl font-bold mb-6 text-[#0F3253]">
-                Download Your AI Underwriting Readiness & Compliance Checklist
-            </h1>
-            <p class="text-lg mb-8">
-                To access your free checklist, please provide your business contact details. We require a business email to ensure the relevance of our resources.
-            </p>
-
-            <form id="checklistForm" class="bg-[#DCE6F0] p-8 rounded-xl shadow-lg border border-gray-200"> <div class="mb-5 text-left">
-                    <label for="name" class="block text-gray-700 text-sm font-medium mb-2">Your Name</label>
-                    <input type="text" id="name" name="name" class="form-input" required>
-                </div>
-                <div class="mb-5 text-left">
-                    <label for="businessName" class="block text-gray-700 text-sm font-medium mb-2">Business Name</label>
-                    <input type="text" id="businessName" name="businessName" class="form-input" required>
-                </div>
-                <div class="mb-6 text-left">
-                    <label for="email" class="block text-gray-700 text-sm font-medium mb-2">Business Email</label>
-                    <input type="email" id="email" name="email" class="form-input" required>
-                    <p id="emailError" class="error-message hidden">Please enter a valid business email address (generic domains like Gmail, Yahoo, Hotmail are not allowed).</p>
-                </div>
-                <button type="submit" class="btn-primary w-full">
-                    Download Checklist
-                </button>
-                <div id="loadingIndicator" class="hidden mt-4 text-[#0F3253] font-semibold">Submitting...</div>
-                <div id="submissionStatus" class="success-message hidden"></div>
-            </form>
-        </div>
-    </section>
-
-    <div id="downloadModal" class="modal hidden">
-        <div class="modal-content">
-            <h3 class="text-2xl font-bold text-[#0F3253] mb-4">Thank You!</h3>
-            <p class="text-lg text-[#2C2C2C] mb-6">Your details have been submitted. You can now download your checklist.</p>
-            <a href="assets/AI_Underwriting_Readiness_Checklist_Placeholder.pdf" download class="btn-primary inline-block">
-                Click Here to Download
-            </a>
-            <button id="closeModal" class="btn-secondary mt-4">Close</button>
-        </div>
-    </div>
-
-
-    <footer class="bg-[#DCE6F0] py-8 rounded-t-xl">
-        <div class="container mx-auto px-4 text-center text-sm">
-            <p class="text-[#0F3253]">&copy; 2025 Stratagem AI. All rights reserved.</p>
-            <div class="mt-4 space-x-4">
-                <a href="#" class="text-[#0F3253] hover:text-[#F4B400]">Privacy Policy (Placeholder)</a>
-                <a href="#" class="text-[#0F3253] hover:text-[#F4B400]">Terms of Service (Placeholder)</a>
-                <a href="https://www.linkedin.com/company/stratagem-ai/" target="_blank" class="text-[#0F3253] hover:text-[#F4B400]">LinkedIn</a>
-            </div>
-        </div>
-    </footer>
-<script type="module">
-        import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // Firebase configuration (values from your provided code/console logs)
-        // Please ensure these match your Firebase Project Settings exactly.
-        const firebaseConfig = {
-            apiKey: "AIzaSyCVJQE6ZwgpN9H1kdPyg3ZuvJne891M9h8",
-            authDomain: "lead-generation-website-a6fee.firebaseapp.com",
-            projectId: "lead-generation-website-a6fee",
-            storageBucket: "lead-generation-website-a6fee.firebasestorage.app", // Using the value you provided
-            messagingSenderId: "251571123282",
-            appId: "1:251571123282:web:04c5bdbe46e6228809db8b", // This is the Web App ID
-            measurementId: "G-XLD2182833"
-        };
-
-        console.log("Attempting to initialize Firebase with config:", firebaseConfig);
-
-        // Initialize Firebase robustly (prevents "duplicate-app" error)
-        let app;
-        if (getApps().length === 0) {
-            app = initializeApp(firebaseConfig);
-            console.log("Firebase Initialized a new app.");
-        } else {
-            app = getApp(); // Get the already initialized app
-            console.log("Firebase app already exists, getting instance.");
-        }
-
-        const db = getFirestore(app);
-        const auth = getAuth(app);
-
-        let userId = null; // To store the user ID after authentication
-
-        // Generic email domains to exclude
-        const genericDomains = [
-            'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com',
-            'icloud.com', 'protonmail.com', 'mail.com', 'gmx.com', 'yandex.com',
-            'zoho.com', 'live.com', 'msn.com', 'web.de', 'freenet.de', 'libero.it',
-            'qq.com', '163.com', '126.com', 'sina.com', 'sohu.com'
-        ];
-
-        // Get DOM elements
-        const checklistForm = document.getElementById('checklistForm');
-        const nameInput = document.getElementById('name');
-        const businessNameInput = document.getElementById('businessName');
-        const emailInput = document.getElementById('email');
-        const emailError = document.getElementById('emailError');
-        const loadingIndicator = document.getElementById('loadingIndicator');
-        const submissionStatus = document.getElementById('submissionStatus');
-        const downloadModal = document.getElementById('downloadModal');
-        const closeModalButton = document.getElementById('closeModal');
-
-        // Function to show modal
-        function showModal() {
-            if(downloadModal) downloadModal.classList.remove('hidden');
-        }
-
-        // Function to hide modal
-        function hideModal() {
-            if(downloadModal) downloadModal.classList.add('hidden');
-        }
-
-        // Close modal button event listener
-        if(closeModalButton) {
-            closeModalButton.addEventListener('click', hideModal);
-        }
-
-        // Authenticate user anonymously when the page loads
-        async function authenticateUser() {
-            if (!auth) {
-                console.error("Firebase Auth service is not available for anonymous sign-in.");
-                if(submissionStatus) submissionStatus.textContent = "Error initializing auth. Please try again.";
-                if(submissionStatus) submissionStatus.classList.remove('hidden');
-                if(loadingIndicator) loadingIndicator.classList.add('hidden');
-                return;
-            }
-            try {
-                const userCredential = await signInAnonymously(auth);
-                userId = userCredential.user.uid;
-                console.log("Signed in anonymously:", userId);
-            } catch (error) {
-                console.error("Firebase anonymous authentication error:", error);
-                if(submissionStatus) submissionStatus.textContent = "Error during anonymous authentication. Refresh and try again.";
-                if(submissionStatus) submissionStatus.classList.remove('hidden');
-                if(loadingIndicator) loadingIndicator.classList.add('hidden');
-            }
-        }
-
-        // Call authentication after DOM is loaded and Firebase app is potentially initialized
-        // Ensuring 'auth' object is ready.
-        if (app) { // Check if Firebase app is initialized before trying to authenticate
-             authenticateUser();
-        } else {
-            console.error("Firebase app not initialized before calling authenticateUser.");
-        }
-
-
-        if(checklistForm) {
-            checklistForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-
-                if(emailError) emailError.classList.add('hidden');
-                if(submissionStatus) submissionStatus.classList.add('hidden');
-                if(loadingIndicator) loadingIndicator.classList.remove('hidden');
-
-                const name = nameInput.value.trim();
-                const businessName = businessNameInput.value.trim();
-                const email = emailInput.value.trim().toLowerCase();
-
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(email)) {
-                    if(emailError) emailError.textContent = "Please enter a valid email address (e.g., name@company.com).";
-                    if(emailError) emailError.classList.remove('hidden');
-                    if(loadingIndicator) loadingIndicator.classList.add('hidden');
-                    return;
-                }
-
-                const domain = email.split('@')[1];
-                if (!domain) {
-                     if(emailError) emailError.textContent = "Invalid email format. Domain missing.";
-                     if(emailError) emailError.classList.remove('hidden');
-                     if(loadingIndicator) loadingIndicator.classList.add('hidden');
-                     return;
-                }
-                if (genericDomains.includes(domain)) {
-                    if(emailError) emailError.textContent = "Generic email domains (like Gmail, Yahoo, Hotmail) are not allowed. Please use a business email.";
-                    if(emailError) emailError.classList.remove('hidden');
-                    if(loadingIndicator) loadingIndicator.classList.add('hidden');
-                    return;
-                }
-
-                if (!userId) {
-                    if(submissionStatus) submissionStatus.textContent = "Authentication not ready. Please refresh and try again.";
-                    if(submissionStatus) submissionStatus.classList.remove('hidden');
-                    if(loadingIndicator) loadingIndicator.classList.add('hidden');
-                    console.error("Firebase not authenticated for submission. userId is null.");
-                    return;
-                }
-
-                try {
-                    // Using top-level "leads" collection as per your "Scenario A" confirmation
-                    const leadsCollectionRef = collection(db, "leads");
-
-                    await addDoc(leadsCollectionRef, {
-                        name: name,
-                        businessName: businessName,
-                        email: email,
-                        timestamp: serverTimestamp(), // Uses Firestore server's timestamp
-                        userId: userId
-                    });
-
-                    if(submissionStatus) submissionStatus.textContent = "Success! Your details have been recorded.";
-                    if(submissionStatus) submissionStatus.classList.remove('hidden');
-                    if(checklistForm) checklistForm.reset();
-                    showModal();
-
-                } catch (error) {
-                    console.error("Error adding document to Firestore:", error);
-                    if(submissionStatus) submissionStatus.textContent = `Error submitting: ${error.message}. Please try again.`;
-                    if(submissionStatus) submissionStatus.classList.remove('hidden');
-                } finally {
-                    if(loadingIndicator) loadingIndicator.classList.add('hidden');
-                }
-            });
-        } else {
-            console.error("Checklist form (checklistForm) not found on this page!");
-        }
-    </script>
-    
-</body>
-</html>
->>>>>>> 92c7957f0d3aff247e282bc81597579c5a4290d3
