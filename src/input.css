@@ -1,0 +1,65 @@
+/* src/input.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* === YOUR CUSTOM STYLES COPIED FROM HTML <style> BLOCKS === */
+
+/* Custom styles for the Inter font and general body styling */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #F8F5EE; /* Warm Cream background from logo */
+    color: #2C2C2C; /* Dark text from logo */
+    /* Add any other global body styles if you had them */
+}
+
+/* Ensures smooth scrolling for anchor links */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom button styling */
+.btn-primary {
+    @apply bg-[#0F3A5C] text-white px-6 py-3 rounded-lg shadow-lg hover:bg-[#0A2840] transition duration-300 ease-in-out;
+}
+
+.btn-secondary {
+    @apply bg-white text-[#C49221] border border-[#C49221] px-6 py-3 rounded-lg hover:bg-[#FFF7E8] transition duration-300 ease-in-out;
+}
+
+/* Custom gradient for sections (used in hero sections, etc.) */
+.section-gradient {
+    background-image: linear-gradient(to right, #0F3A5C, #0D3050); /* Deep blue gradient from logo */
+}
+
+/* Custom styles for form inputs (from checklist-download.html) */
+.form-input {
+    @apply w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#C49221] focus:border-transparent transition duration-200 ease-in-out;
+}
+
+/* Custom class for error messages (from checklist-download.html) */
+.error-message {
+    @apply text-red-600 text-sm mt-1;
+}
+
+/* Custom class for success messages (from checklist-download.html) */
+.success-message {
+    @apply text-green-600 text-base mt-4 font-semibold;
+}
+
+/* Styles for the download modal (from checklist-download.html) */
+.modal {
+    @apply fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center p-4 z-50;
+}
+
+.modal-content {
+    @apply bg-white p-8 rounded-lg shadow-xl max-w-md w-full text-center;
+}
+
+/* If you had other distinct custom classes like '.solid-blue-dark' 
+   from the alternative theme and you intend to use them, 
+   you would add them here as well. For consistency with the HTML
+   rewrites I provided (which were based on the first versions of your files),
+   I've focused on the styles from that theme.
+*/
