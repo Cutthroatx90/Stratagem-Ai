@@ -1,40 +1,20 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Download Checklist - Stratagem AI</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="dist/output.css" rel="stylesheet">
     <style>
-        body {
+        /* Minimal fallback styles - primary styling should come from output.css */
+        html {
+            scroll-behavior: smooth;
             font-family: 'Inter', sans-serif;
-            background-color: #F8F5EE; /* Warm Cream background from logo */
-            color: #2C2C2C; /* Dark text from logo */
         }
-        .btn-primary {
-            @apply bg-[#0F3A5C] text-white px-6 py-3 rounded-lg shadow-lg hover:bg-[#0A2840] transition duration-300 ease-in-out;
-        }
-        .btn-secondary {
-            @apply bg-white text-[#C49221] border border-[#C49221] px-6 py-3 rounded-lg hover:bg-[#FFF7E8] transition duration-300 ease-in-out;
-        }
-        .section-gradient {
-            background-image: linear-gradient(to right, #0F3A5C, #0D3050); /* Deep blue gradient from logo */
-        }
-        .form-input {
-            @apply w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#C49221] focus:border-transparent transition duration-200 ease-in-out;
-        }
-        .error-message {
-            @apply text-red-600 text-sm mt-1;
-        }
-        .success-message {
-            @apply text-green-600 text-base mt-4 font-semibold;
-        }
-        .modal {
-            @apply fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center p-4 z-50;
-        }
-        .modal-content {
-            @apply bg-white p-8 rounded-lg shadow-xl max-w-md w-full text-center;
+        body {
+            background-color: #F8F5EE; /* Fallback */
+            color: #2C2C2C; /* Fallback */
         }
     </style>
 </head>
@@ -45,14 +25,14 @@
             <a href="index.html" class="text-2xl font-bold text-[#0F3A5C]">
                 <img src="images/stratagem-ai-logo.png" alt="Stratagem AI Logo" class="h-10 md:h-12 w-auto">
             </a>
-            <div class="hidden md:flex space-x-6">
+            <div id="mobile-menu-nav" class="hidden md:flex space-x-6">
                 <a href="index.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Home</a>
                 <a href="services.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Services</a>
                 <a href="about.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">About Us</a>
                 <a href="resources.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Resources</a>
                 <a href="contact.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Contact</a>
             </div>
-            <button class="md:hidden text-[#2C2C2C] focus:outline-none">
+            <button class="md:hidden text-[#2C2C2C] focus:outline-none" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu-nav">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
@@ -60,49 +40,50 @@
         </nav>
     </header>
 
-    <section class="py-16 md:py-24 bg-white">
-        <div class="container mx-auto px-4 text-center max-w-2xl">
-            <h1 class="text-3xl md:text-4xl font-bold mb-6 text-[#0F3A5C]">
-                Download Your AI Underwriting Readiness & Compliance Checklist
-            </h1>
-            <p class="text-lg text-[#2C2C2C] mb-8">
-                To access your free checklist, please provide your business contact details. We require a business email to ensure the relevance of our resources.
-            </p>
+    <main>
+        <section class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4 text-center max-w-2xl">
+                <h1 class="text-3xl md:text-4xl font-bold mb-6 text-[#0F3A5C]">
+                    Download Your AI Underwriting Readiness & Compliance Checklist
+                </h1>
+                <p class="text-lg text-[#2C2C2C] mb-8">
+                    To access your free checklist, please provide your business contact details. We require a business email to ensure the relevance of our resources.
+                </p>
 
-            <form id="checklistForm" class="bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-200">
-                <div class="mb-5 text-left">
-                    <label for="name" class="block text-gray-700 text-sm font-medium mb-2">Your Name</label>
-                    <input type="text" id="name" name="name" class="form-input" required>
-                </div>
-                <div class="mb-5 text-left">
-                    <label for="businessName" class="block text-gray-700 text-sm font-medium mb-2">Business Name</label>
-                    <input type="text" id="businessName" name="businessName" class="form-input" required>
-                </div>
-                <div class="mb-6 text-left">
-                    <label for="email" class="block text-gray-700 text-sm font-medium mb-2">Business Email</label>
-                    <input type="email" id="email" name="email" class="form-input" required>
-                    <p id="emailError" class="error-message hidden">Please enter a valid business email address (generic domains like Gmail, Yahoo, Hotmail are not allowed).</p>
-                </div>
-                <button type="submit" class="btn-primary w-full">
-                    Download Checklist
-                </button>
-                <div id="loadingIndicator" class="hidden mt-4 text-[#0F3A5C] font-semibold">Submitting...</div>
-                <div id="submissionStatus" class="success-message hidden"></div>
-            </form>
+                <form id="checklistForm" class="bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-200">
+                    <div class="mb-5 text-left">
+                        <label for="name" class="block text-gray-700 text-sm font-medium mb-2">Your Name</label>
+                        <input type="text" id="name" name="name" class="form-input" required>
+                    </div>
+                    <div class="mb-5 text-left">
+                        <label for="businessName" class="block text-gray-700 text-sm font-medium mb-2">Business Name</label>
+                        <input type="text" id="businessName" name="businessName" class="form-input" required>
+                    </div>
+                    <div class="mb-6 text-left">
+                        <label for="email" class="block text-gray-700 text-sm font-medium mb-2">Business Email</label>
+                        <input type="email" id="email" name="email" class="form-input" required>
+                        <p id="emailError" class="error-message hidden">Please enter a valid business email address (generic domains like Gmail, Yahoo, Hotmail are not allowed).</p>
+                    </div>
+                    <button type="submit" class="btn-primary w-full">
+                        Download Checklist
+                    </button>
+                    <div id="loadingIndicator" class="hidden mt-4 text-[#0F3A5C] font-semibold">Submitting...</div>
+                    <div id="submissionStatus" class="success-message hidden"></div>
+                </form>
+            </div>
+        </section>
+
+        <div id="downloadModal" class="modal hidden">
+            <div class="modal-content">
+                <h3 class="text-2xl font-bold text-[#0F3A5C] mb-4">Thank You!</h3>
+                <p class="text-lg text-[#2C2C2C] mb-6">Your details have been submitted. You can now download your checklist.</p>
+                <a href="assets/AI_Underwriting_Readiness_Checklist_Placeholder.pdf" download class="btn-primary inline-block">
+                    Click Here to Download
+                </a>
+                <button id="closeModal" class="btn-secondary mt-4">Close</button>
+            </div>
         </div>
-    </section>
-
-    <div id="downloadModal" class="modal hidden">
-        <div class="modal-content">
-            <h3 class="text-2xl font-bold text-[#0F3A5C] mb-4">Thank You!</h3>
-            <p class="text-lg text-[#2C2C2C] mb-6">Your details have been submitted. You can now download your checklist.</p>
-            <a href="assets/AI_Underwriting_Readiness_Checklist_Placeholder.pdf" download class="btn-primary inline-block">
-                Click Here to Download
-            </a>
-            <button id="closeModal" class="btn-secondary mt-4">Close</button>
-        </div>
-    </div>
-
+    </main>
 
     <footer class="bg-gray-800 text-white py-8 rounded-t-xl">
         <div class="container mx-auto px-4 text-center text-sm">
@@ -115,127 +96,7 @@
         </div>
     </footer>
 
-   
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download Checklist - Stratagem AI</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #DCE6F0; /* New light gray/cream background */
-            color: #2C2C2C; /* Dark text for readability on light background */
-        }
-        .btn-primary {
-            /* Applied bubble box/rectangle look with corrected color hex */
-            @apply bg-[#F4B400] text-[#0F3253] p-10 rounded-3xl shadow-lg hover:bg-[#D69F00] transition duration-300 ease-in-out;
-        }
-        .btn-secondary {
-            /* Applied bubble box/rectangle look with corrected color hex */
-            @apply bg-[#F4B400] text-[#0F3253] border border-[#F4B400] p-10 rounded-3xl shadow-lg hover:bg-[#D69F00] transition duration-300 ease-in-out;
-        }
-        .solid-blue-dark {
-            background-color: #0F3253; /* Very Dark Blue from logo */
-        }
-        .form-input {
-            @apply w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#F4B400] focus:border-transparent transition duration-200 ease-in-out;
-        }
-        .error-message {
-            @apply text-red-600 text-sm mt-1;
-        }
-        .success-message {
-            @apply text-green-600 text-base mt-4 font-semibold;
-        }
-        .modal {
-            @apply fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center p-4 z-50;
-        }
-        .modal-content {
-            @apply bg-white p-8 rounded-lg shadow-xl max-w-md w-full text-center;
-        }
-    </style>
-</head>
-<body class="antialiased">
-
-    <header class="bg-[#DCE6F0] shadow-sm py-4">
-        <nav class="container mx-auto px-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-[#0F3253]">
-                <img src="images/stratagem-ai-logo.png" alt="Stratagem AI Logo" class="h-10 md:h-12 w-auto">
-            </a>
-            <div class="hidden md:flex space-x-6">
-                <a href="index.html" class="text-[#0F3253] hover:text-[#F4B400] font-medium">Home</a>
-                <a href="services.html" class="text-[#0F3253] hover:text-[#F4B400] font-medium">Services</a>
-                <a href="about.html" class="text-[#0F3253] hover:text-[#F4B400] font-medium">About Us</a>
-                <a href="resources.html" class="text-[#0F3253] hover:text-[#F4B400] font-medium">Resources</a>
-                <a href="contact.html" class="text-[#0F3253] hover:text-[#F4B400] font-medium">Contact</a>
-            </div>
-            <button class="md:hidden text-[#0F3253] focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                </svg>
-            </button>
-        </nav>
-    </header>
-
-    <section class="py-16 md:py-24 bg-white text-[#2C2C2C]">
-        <div class="container mx-auto px-4 text-center max-w-2xl">
-            <h1 class="text-3xl md:text-4xl font-bold mb-6 text-[#0F3253]">
-                Download Your AI Underwriting Readiness & Compliance Checklist
-            </h1>
-            <p class="text-lg mb-8">
-                To access your free checklist, please provide your business contact details. We require a business email to ensure the relevance of our resources.
-            </p>
-
-            <form id="checklistForm" class="bg-[#DCE6F0] p-8 rounded-xl shadow-lg border border-gray-200"> <div class="mb-5 text-left">
-                    <label for="name" class="block text-gray-700 text-sm font-medium mb-2">Your Name</label>
-                    <input type="text" id="name" name="name" class="form-input" required>
-                </div>
-                <div class="mb-5 text-left">
-                    <label for="businessName" class="block text-gray-700 text-sm font-medium mb-2">Business Name</label>
-                    <input type="text" id="businessName" name="businessName" class="form-input" required>
-                </div>
-                <div class="mb-6 text-left">
-                    <label for="email" class="block text-gray-700 text-sm font-medium mb-2">Business Email</label>
-                    <input type="email" id="email" name="email" class="form-input" required>
-                    <p id="emailError" class="error-message hidden">Please enter a valid business email address (generic domains like Gmail, Yahoo, Hotmail are not allowed).</p>
-                </div>
-                <button type="submit" class="btn-primary w-full">
-                    Download Checklist
-                </button>
-                <div id="loadingIndicator" class="hidden mt-4 text-[#0F3253] font-semibold">Submitting...</div>
-                <div id="submissionStatus" class="success-message hidden"></div>
-            </form>
-        </div>
-    </section>
-
-    <div id="downloadModal" class="modal hidden">
-        <div class="modal-content">
-            <h3 class="text-2xl font-bold text-[#0F3253] mb-4">Thank You!</h3>
-            <p class="text-lg text-[#2C2C2C] mb-6">Your details have been submitted. You can now download your checklist.</p>
-            <a href="assets/AI_Underwriting_Readiness_Checklist_Placeholder.pdf" download class="btn-primary inline-block">
-                Click Here to Download
-            </a>
-            <button id="closeModal" class="btn-secondary mt-4">Close</button>
-        </div>
-    </div>
-
-
-    <footer class="bg-[#DCE6F0] py-8 rounded-t-xl">
-        <div class="container mx-auto px-4 text-center text-sm">
-            <p class="text-[#0F3253]">&copy; 2025 Stratagem AI. All rights reserved.</p>
-            <div class="mt-4 space-x-4">
-                <a href="#" class="text-[#0F3253] hover:text-[#F4B400]">Privacy Policy (Placeholder)</a>
-                <a href="#" class="text-[#0F3253] hover:text-[#F4B400]">Terms of Service (Placeholder)</a>
-                <a href="https://www.linkedin.com/company/stratagem-ai/" target="_blank" class="text-[#0F3253] hover:text-[#F4B400]">LinkedIn</a>
-            </div>
-        </div>
-    </footer>
-<script type="module">
+    <script type="module">
         import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
@@ -325,8 +186,7 @@
         }
 
         // Call authentication after DOM is loaded and Firebase app is potentially initialized
-        // Ensuring 'auth' object is ready.
-        if (app) { // Check if Firebase app is initialized before trying to authenticate
+        if (app) { 
              authenticateUser();
         } else {
             console.error("Firebase app not initialized before calling authenticateUser.");
@@ -404,6 +264,5 @@
             console.error("Checklist form (checklistForm) not found on this page!");
         }
     </script>
-    
 </body>
 </html>
