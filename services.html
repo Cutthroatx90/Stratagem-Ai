@@ -7,32 +7,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="dist/output.css" rel="stylesheet">
     <style>
-        /* Minimal fallback styles */
         html {
             scroll-behavior: smooth;
             font-family: 'Inter', sans-serif;
         }
         body {
-            background-color: #F8F5EE; /* Fallback */
-            color: #2C2C2C; /* Fallback */
+            color: #000000;
         }
+        .nav-link-custom-hover:hover {
+            text-shadow: 0 0 8px #c39020, 0 0 10px #c39020, 0 0 12px #c39020;
+        }
+        /* .section-gradient assumed to have its own background definition */
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased text-brand-text bg-gray-100">
 
-    <header class="bg-white shadow-sm py-4">
+    <header class="bg-brand-header-bg shadow-sm py-4">
         <nav class="container mx-auto px-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-[#0F3A5C]">
+            <a href="index.html">
                 <img src="images/stratagem-ai-logo.png" alt="Stratagem AI Logo" class="h-10 md:h-12 w-auto">
             </a>
             <div id="mobile-menu-nav" class="hidden md:flex space-x-6">
-                <a href="index.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Home</a>
-                <a href="services.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Services</a>
-                <a href="about.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">About Us</a>
-                <a href="resources.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Resources</a>
-                <a href="contact.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Contact</a>
+                <a href="index.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">Home</a>
+                <a href="services.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">Services</a>
+                <a href="about.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">About Us</a>
+                <a href="resources.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">Resources</a>
+                <a href="contact.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">Contact</a>
             </div>
-            <button class="md:hidden text-[#2C2C2C] focus:outline-none" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu-nav">
+            <button class="md:hidden text-brand-navy focus:outline-none" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu-nav">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
@@ -49,56 +51,56 @@
                 <p class="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-90">
                     Tailored solutions designed to help community banks and credit unions leverage AI for optimized underwriting, risk assessment, and compliant growth.
                 </p>
-                <a href="contact.html" class="btn-primary">Request a Detailed Service Proposal</a>
+                <a href="contact.html" class="inline-block bg-brand-gold text-brand-text border-2 border-brand-text hover:bg-brand-gold-darker font-medium py-3 px-8 rounded-md transition-colors duration-300 transform hover:-translate-y-0.5">Request a Detailed Service Proposal</a>
             </div>
         </section>
 
         <section class="py-16 md:py-24 bg-white">
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#0F3A5C]">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-brand-navy">
                     Core Offerings
                 </h2>
                 <div class="grid md:grid-cols-1 gap-12 max-w-4xl mx-auto">
 
                     <div class="bg-gray-50 p-8 rounded-xl shadow-md border border-gray-200">
-                        <h3 class="text-2xl font-semibold text-[#0F3A5C] mb-4">
+                        <h3 class="text-2xl font-semibold text-brand-navy mb-4">
                             AI Underwriting Readiness & Explainability Assessment
                         </h3>
-                        <p class="text-[#2C2C2C] mb-4">
+                        <p class="text-brand-text mb-4">
                             This is a focused, typically 2-week engagement designed to provide community banks and credit unions with a clear, actionable roadmap for AI adoption within their underwriting processes. We conduct a thorough review of existing manual or semi-automated workflows, assess current data infrastructure (identifying fragmentation and silos that impede AI effectiveness), and evaluate any current or planned AI tool implementations.
                         </p>
-                        <h4 class="text-xl font-semibold text-[#0F3A5C] mb-2">Key Deliverables:</h4>
-                        <ul class="list-disc list-inside text-[#2C2C2C] text-lg space-y-2 pl-4">
+                        <h4 class="text-xl font-semibold text-brand-navy mb-2">Key Deliverables:</h4>
+                        <ul class="list-disc list-inside text-brand-text text-lg space-y-2 pl-4">
                             <li>**Comprehensive Report:** Identifies "quick wins" for AI automation within your existing operations.</li>
                             <li>**Data Quality & Readiness Assessment:** A detailed evaluation of your data's suitability for robust AI integration.</li>
                             <li>**Explainable AI (XAI) Framework:** A preliminary framework for integrating XAI principles, vital for ensuring compliance with fair lending laws (ECOA, FCRA) and meeting evolving regulatory demands for transparency in AI-driven financial decisions.</li>
                         </ul>
-                        <a href="contact.html" class="inline-block mt-6 btn-secondary">Learn More & Request Assessment</a>
+                        <a href="contact.html" class="inline-block mt-6 bg-brand-gold text-brand-text border-2 border-brand-text hover:bg-brand-gold-darker font-medium py-2 px-6 rounded-md transition-colors duration-300 transform hover:-translate-y-0.5">Learn More & Request Assessment</a>
                     </div>
 
                     <div class="bg-gray-50 p-8 rounded-xl shadow-md border border-gray-200">
-                        <h3 class="text-2xl font-semibold text-[#0F3A5C] mb-4">
+                        <h3 class="text-2xl font-semibold text-brand-navy mb-4">
                             AI Risk Model Audit & Optimization with XAI Focus
                         </h3>
-                        <p class="text-[#2C2C2C] mb-4">
+                        <p class="text-brand-text mb-4">
                             This is a more in-depth, typically 3-week engagement, targeting institutions that already have existing risk models, whether traditional or early-stage AI-driven. We meticulously audit these models for accuracy, efficiency, and, critically, for potential biases and "black box" issues that can obscure decision-making processes.
                         </p>
-                        <h4 class="text-xl font-semibold text-[#0F3A5C] mb-2">Key Deliverables:</h4>
-                        <ul class="list-disc list-inside text-[#2C2C2C] text-lg space-y-2 pl-4">
+                        <h4 class="text-xl font-semibold text-brand-navy mb-2">Key Deliverables:</h4>
+                        <ul class="list-disc list-inside text-brand-text text-lg space-y-2 pl-4">
                             <li>**Detailed Audit Report:** Pinpoints specific areas for improved accuracy using advanced AI techniques.</li>
                             <li>**Transparency Strategies:** Concrete strategies for making AI-driven risk assessments transparent and auditable.</li>
                             <li>**XAI Implementation Recommendations:** Specific recommendations for implementing Explainable AI (XAI) techniques, such as SHAP or LIME, to clearly explain the variables driving credit decisions and ensure full regulatory adherence.</li>
                         </ul>
-                        <a href="contact.html" class="inline-block mt-6 btn-secondary">Request Model Audit Proposal</a>
+                        <a href="contact.html" class="inline-block mt-6 bg-brand-gold text-brand-text border-2 border-brand-text hover:bg-brand-gold-darker font-medium py-2 px-6 rounded-md transition-colors duration-300 transform hover:-translate-y-0.5">Request Model Audit Proposal</a>
                     </div>
 
                 </div>
                 <div class="text-center mt-16">
-                    <h3 class="text-2xl font-bold text-[#0F3A5C] mb-4">Ready to Transform Your Lending Operations?</h3>
-                    <p class="text-lg text-[#2C2C2C] mb-8 max-w-2xl mx-auto">
+                    <h3 class="text-2xl font-bold text-brand-navy mb-4">Ready to Transform Your Lending Operations?</h3>
+                    <p class="text-lg text-brand-text mb-8 max-w-2xl mx-auto">
                         Our tailored solutions ensure you harness the power of AI responsibly, boosting efficiency, reducing risk, and maintaining compliance.
                     </p>
-                    <a href="contact.html" class="btn-primary">Get Your Custom Proposal</a>
+                    <a href="contact.html" class="inline-block bg-brand-gold text-brand-text border-2 border-brand-text hover:bg-brand-gold-darker font-medium py-3 px-8 rounded-md transition-colors duration-300 transform hover:-translate-y-0.5">Get Your Custom Proposal</a>
                 </div>
             </div>
         </section>
@@ -108,12 +110,27 @@
         <div class="container mx-auto px-4 text-center text-sm">
             <p>&copy; 2025 Stratagem AI. All rights reserved.</p>
             <div class="mt-4 space-x-4">
-                <a href="#" class="hover:text-[#C49221]">Privacy Policy (Placeholder)</a>
-                <a href="#" class="hover:text-[#C49221]">Terms of Service (Placeholder)</a>
-                <a href="https://www.linkedin.com/company/stratagem-ai/" target="_blank" class="hover:text-[#C49221]">LinkedIn</a>
+                <a href="#" class="hover:text-brand-gold">Privacy Policy (Placeholder)</a>
+                <a href="#" class="hover:text-brand-gold">Terms of Service (Placeholder)</a>
+                <a href="https://www.linkedin.com/company/stratagem-ai/" target="_blank" class="hover:text-brand-gold">LinkedIn</a>
             </div>
         </div>
     </footer>
 
+    <script>
+        // Mobile Menu Toggle Script
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuButton = document.querySelector('header nav button[aria-label="Open menu"]');
+            const mobileMenuNav = document.getElementById('mobile-menu-nav');
+
+            if (menuButton && mobileMenuNav) {
+                menuButton.addEventListener('click', function () {
+                    const isCurrentlyHidden = mobileMenuNav.classList.contains('hidden');
+                    mobileMenuNav.classList.toggle('hidden', !isCurrentlyHidden);
+                    menuButton.setAttribute('aria-expanded', isCurrentlyHidden); 
+                });
+            }
+        });
+    </script>
 </body>
 </html>

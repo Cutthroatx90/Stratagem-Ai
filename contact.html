@@ -7,32 +7,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="dist/output.css" rel="stylesheet">
     <style>
-        /* Minimal fallback styles */
         html {
             scroll-behavior: smooth;
             font-family: 'Inter', sans-serif;
         }
         body {
-            background-color: #F8F5EE; /* Fallback */
-            color: #2C2C2C; /* Fallback */
+            color: #000000;
         }
+        .nav-link-custom-hover:hover {
+            text-shadow: 0 0 8px #c39020, 0 0 10px #c39020, 0 0 12px #c39020;
+        }
+        /* .section-gradient assumed to have its own background definition */
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased text-brand-text bg-gray-100">
 
-    <header class="bg-white shadow-sm py-4">
+    <header class="bg-brand-header-bg shadow-sm py-4">
         <nav class="container mx-auto px-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-[#0F3A5C]">
+            <a href="index.html">
                 <img src="images/stratagem-ai-logo.png" alt="Stratagem AI Logo" class="h-10 md:h-12 w-auto">
             </a>
             <div id="mobile-menu-nav" class="hidden md:flex space-x-6">
-                <a href="index.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Home</a>
-                <a href="services.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Services</a>
-                <a href="about.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">About Us</a>
-                <a href="resources.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Resources</a>
-                <a href="contact.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Contact</a>
+                <a href="index.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">Home</a>
+                <a href="services.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">Services</a>
+                <a href="about.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">About Us</a>
+                <a href="resources.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">Resources</a>
+                <a href="contact.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">Contact</a>
             </div>
-            <button class="md:hidden text-[#2C2C2C] focus:outline-none" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu-nav">
+            <button class="md:hidden text-brand-navy focus:outline-none" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu-nav">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
@@ -54,34 +56,34 @@
 
         <section class="py-16 md:py-24 bg-white">
             <div class="container mx-auto px-4 text-center max-w-2xl">
-                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-[#0F3A5C]">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-brand-navy">
                     Schedule a Discovery Call or Send Us an Email
                 </h2>
-                <p class="text-lg text-[#2C2C2C] mb-8">
+                <p class="text-lg text-brand-text mb-8">
                     The fastest way to explore how Stratagem AI can help your institution is to schedule a direct call.
                     For general inquiries, feel free to send us an email.
                 </p>
 
-                <div class="flex flex-col sm:flex-row justify-center space-y-6 sm:space-y-0 sm:space-x-8 mb-12">
-                    <div class="flex flex-col items-center">
-                        <h3 class="text-xl font-semibold text-[#0F3A5C] mb-3">Schedule Directly</h3>
-                        <p class="text-lg text-[#2C2C2C] mb-4">Book a no-obligation discovery call at your convenience.</p>
-                        <a href="https://calendly.com/consulting-stratagem-ai/discovery-call-1" target="_blank" class="btn-primary">
+                <div class="flex flex-col sm:flex-row justify-center items-start space-y-6 sm:space-y-0 sm:space-x-8 mb-12">
+                    <div class="flex flex-col items-center text-center sm:w-1/2">
+                        <h3 class="text-xl font-semibold text-brand-navy mb-3">Schedule Directly</h3>
+                        <p class="text-lg text-brand-text mb-4">Book a no-obligation discovery call at your convenience.</p>
+                        <a href="https://calendly.com/consulting-stratagem-ai/discovery-call-1" target="_blank" class="inline-block bg-brand-gold text-brand-text border-2 border-brand-text hover:bg-brand-gold-darker font-medium py-3 px-8 rounded-md transition-colors duration-300 transform hover:-translate-y-0.5">
                             Book a Discovery Call
                         </a>
                     </div>
 
-                    <div class="flex flex-col items-center">
-                        <h3 class="text-xl font-semibold text-[#0F3A5C] mb-3">Email Us</h3>
-                        <p class="text-lg text-[#2C2C2C] mb-4">For detailed inquiries or support, send us a message.</p>
-                        <a href="mailto:consulting@stratagem-ai.com" class="btn-primary">
+                    <div class="flex flex-col items-center text-center sm:w-1/2">
+                        <h3 class="text-xl font-semibold text-brand-navy mb-3">Email Us</h3>
+                        <p class="text-lg text-brand-text mb-4">For detailed inquiries or support, send us a message.</p>
+                        <a href="mailto:consulting@stratagem-ai.com" class="inline-block bg-brand-gold text-brand-text border-2 border-brand-text hover:bg-brand-gold-darker font-medium py-3 px-8 rounded-md transition-colors duration-300 transform hover:-translate-y-0.5">
                             Email Stratagem AI
                         </a>
-                        <p class="text-sm text-gray-600 mt-2">consulting@stratagem-ai.com</p>
+                        <p class="text-sm text-brand-gray-muted mt-2">consulting@stratagem-ai.com</p>
                     </div>
                 </div>
 
-                <p class="text-base text-gray-700 mt-8">
+                <p class="text-base text-brand-gray-slate mt-8">
                     We look forward to connecting with you and discussing your AI transformation journey.
                 </p>
             </div>
@@ -92,12 +94,27 @@
         <div class="container mx-auto px-4 text-center text-sm">
             <p>&copy; 2025 Stratagem AI. All rights reserved.</p>
             <div class="mt-4 space-x-4">
-                <a href="#" class="hover:text-[#C49221]">Privacy Policy (Placeholder)</a>
-                <a href="#" class="hover:text-[#C49221]">Terms of Service (Placeholder)</a>
-                <a href="https://www.linkedin.com/company/stratagem-ai/" target="_blank" class="hover:text-[#C49221]">LinkedIn</a>
+                <a href="#" class="hover:text-brand-gold">Privacy Policy (Placeholder)</a>
+                <a href="#" class="hover:text-brand-gold">Terms of Service (Placeholder)</a>
+                <a href="https://www.linkedin.com/company/stratagem-ai/" target="_blank" class="hover:text-brand-gold">LinkedIn</a>
             </div>
         </div>
     </footer>
 
+    <script>
+        // Mobile Menu Toggle Script
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuButton = document.querySelector('header nav button[aria-label="Open menu"]');
+            const mobileMenuNav = document.getElementById('mobile-menu-nav');
+
+            if (menuButton && mobileMenuNav) {
+                menuButton.addEventListener('click', function () {
+                    const isCurrentlyHidden = mobileMenuNav.classList.contains('hidden');
+                    mobileMenuNav.classList.toggle('hidden', !isCurrentlyHidden);
+                    menuButton.setAttribute('aria-expanded', isCurrentlyHidden); 
+                });
+            }
+        });
+    </script>
 </body>
 </html>

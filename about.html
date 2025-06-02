@@ -7,32 +7,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="dist/output.css" rel="stylesheet">
     <style>
-        /* Minimal fallback styles */
         html {
             scroll-behavior: smooth;
             font-family: 'Inter', sans-serif;
         }
         body {
-            background-color: #F8F5EE; /* Fallback */
-            color: #2C2C2C; /* Fallback */
+            color: #000000;
         }
+        .nav-link-custom-hover:hover {
+            text-shadow: 0 0 8px #c39020, 0 0 10px #c39020, 0 0 12px #c39020;
+        }
+        /* .section-gradient assumed to have its own background definition */
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased text-brand-text bg-gray-100">
 
-    <header class="bg-white shadow-sm py-4">
+    <header class="bg-brand-header-bg shadow-sm py-4">
         <nav class="container mx-auto px-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-[#0F3A5C]">
+            <a href="index.html">
                 <img src="images/stratagem-ai-logo.png" alt="Stratagem AI Logo" class="h-10 md:h-12 w-auto">
             </a>
             <div id="mobile-menu-nav" class="hidden md:flex space-x-6">
-                <a href="index.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Home</a>
-                <a href="services.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Services</a>
-                <a href="about.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">About Us</a>
-                <a href="resources.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Resources</a>
-                <a href="contact.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Contact</a>
+                <a href="index.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">Home</a>
+                <a href="services.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">Services</a>
+                <a href="about.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">About Us</a>
+                <a href="resources.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">Resources</a>
+                <a href="contact.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">Contact</a>
             </div>
-            <button class="md:hidden text-[#2C2C2C] focus:outline-none" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu-nav">
+            <button class="md:hidden text-brand-navy focus:outline-none" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu-nav">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
@@ -54,17 +56,17 @@
 
         <section class="py-16 md:py-24 bg-white">
             <div class="container mx-auto px-4 max-w-4xl">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#0F3A5C]">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-brand-navy">
                     The Foundation of Stratagem AI
                 </h2>
-                <div class="space-y-8 text-lg text-[#2C2C2C]">
+                <div class="space-y-8 text-lg text-brand-text">
                     <p>
                         Stratagem AI was founded on a deep passion for transforming small business lending through intelligent, ethical, and compliant AI automation. Our mission is to empower community banks and credit unions to navigate the complexities of modern finance, leveraging cutting-edge AI to optimize underwriting, enhance risk assessment, and ensure sustainable, responsible growth.
                     </p>
                     <p>
                         Our approach is rooted in extensive professional experience in small business lending and financing, comprehensive risk assessments, and practical application of AI automation within the fintech lending space. This includes a proven track record in optimizing risk strategy and developing robust underwriting policies and procedures that drive both efficiency and adherence to regulatory standards.
                     </p>
-                    <h3 class="text-2xl font-semibold text-[#0F3A5C] mt-12 mb-4">
+                    <h3 class="text-2xl font-semibold text-brand-navy mt-12 mb-4">
                         Discipline Forged in Service: A Veteran's Commitment
                     </h3>
                     <p>
@@ -73,7 +75,7 @@
                     <p>
                         The discipline, strategic thinking, and commitment to operational excellence honed during military service are directly applied to every client engagement at Stratagem AI. We bring a methodical, results-driven approach to complex problems, ensuring that AI solutions are not just innovative, but also robust, reliable, and meticulously implemented.
                     </p>
-                    <h3 class="text-2xl font-semibold text-[#0F3A5C] mt-12 mb-4">
+                    <h3 class="text-2xl font-semibold text-brand-navy mt-12 mb-4">
                         Why Our Experience Matters to You
                     </h3>
                     <p>
@@ -81,32 +83,32 @@
                     </p>
                 </div>
                 <div class="text-center mt-12">
-                    <a href="services.html" class="btn-primary">Explore Our Services</a>
+                    <a href="services.html" class="inline-block bg-brand-gold text-brand-text border-2 border-brand-text hover:bg-brand-gold-darker font-medium py-3 px-8 rounded-md transition-colors duration-300 transform hover:-translate-y-0.5">Explore Our Services</a>
                 </div>
             </div>
         </section>
 
-        <section class="py-16 md:py-24 bg-[#F0ECE1]">
+        <section class="py-16 md:py-24 bg-[#F0ECE1]"> {/* Custom bg color */}
             <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#0F3A5C]">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-brand-navy">
                     Our Core Principles & Differentiators
                 </h2>
                 <div class="grid md:grid-cols-3 gap-8">
                     <div class="p-6 rounded-xl shadow-sm border border-gray-200 bg-white">
-                        <h3 class="text-xl font-semibold text-[#0F3A5C] mb-3">Unparalleled Domain Expertise</h3>
-                        <p class="text-[#2C2C2C]">
+                        <h3 class="text-xl font-semibold text-brand-navy mb-3">Unparalleled Domain Expertise</h3>
+                        <p class="text-brand-text">
                             Leveraging a strong background in small business lending, comprehensive risk assessment, and hands-on AI automation in fintech to deliver practical, real-world solutions.
                         </p>
                     </div>
                     <div class="p-6 rounded-xl shadow-sm border border-gray-200 bg-white">
-                        <h3 class="text-xl font-semibold text-[#0F3A5C] mb-3">Compliance & Ethical AI Focus</h3>
-                        <p class="text-[#2C2C2C]">
+                        <h3 class="text-xl font-semibold text-brand-navy mb-3">Compliance & Ethical AI Focus</h3>
+                        <p class="text-brand-text">
                             Specializing in Explainable AI (XAI) and robust risk mitigation strategies to ensure your AI initiatives meet rigorous regulatory standards (ECOA, FCRA) and build public trust.
                         </p>
                     </div>
                     <div class="p-6 rounded-xl shadow-sm border border-gray-200 bg-white">
-                        <h3 class="text-xl font-semibold text-[#0F3A5C] mb-3">Quantifiable, Results-Driven Approach</h3>
-                        <p class="text-[#2C2C2C]">
+                        <h3 class="text-xl font-semibold text-brand-navy mb-3">Quantifiable, Results-Driven Approach</h3>
+                        <p class="text-brand-text">
                             Our aim is clear: to deliver demonstrable ROI – reduced loan defaults, accelerated approval times, and significant cost savings through strategic and responsible AI adoption.
                         </p>
                     </div>
@@ -119,12 +121,27 @@
         <div class="container mx-auto px-4 text-center text-sm">
             <p>&copy; 2025 Stratagem AI. All rights reserved.</p>
             <div class="mt-4 space-x-4">
-                <a href="#" class="hover:text-[#C49221]">Privacy Policy (Placeholder)</a>
-                <a href="#" class="hover:text-[#C49221]">Terms of Service (Placeholder)</a>
-                <a href="https://www.linkedin.com/company/stratagem-ai/" target="_blank" class="hover:text-[#C49221]">LinkedIn</a>
+                <a href="#" class="hover:text-brand-gold">Privacy Policy (Placeholder)</a>
+                <a href="#" class="hover:text-brand-gold">Terms of Service (Placeholder)</a>
+                <a href="https://www.linkedin.com/company/stratagem-ai/" target="_blank" class="hover:text-brand-gold">LinkedIn</a>
             </div>
         </div>
     </footer>
 
+    <script>
+        // Mobile Menu Toggle Script
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuButton = document.querySelector('header nav button[aria-label="Open menu"]');
+            const mobileMenuNav = document.getElementById('mobile-menu-nav');
+
+            if (menuButton && mobileMenuNav) {
+                menuButton.addEventListener('click', function () {
+                    const isCurrentlyHidden = mobileMenuNav.classList.contains('hidden');
+                    mobileMenuNav.classList.toggle('hidden', !isCurrentlyHidden);
+                    menuButton.setAttribute('aria-expanded', isCurrentlyHidden); 
+                });
+            }
+        });
+    </script>
 </body>
 </html>

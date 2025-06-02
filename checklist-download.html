@@ -7,32 +7,46 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="dist/output.css" rel="stylesheet">
     <style>
-        /* Minimal fallback styles - primary styling should come from output.css */
         html {
             scroll-behavior: smooth;
             font-family: 'Inter', sans-serif;
         }
         body {
-            background-color: #F8F5EE; /* Fallback */
-            color: #2C2C2C; /* Fallback */
+            /* background-color: #F8F5EE; */ /* Base background is now applied via Tailwind: bg-gray-100 or similar */
+            color: #000000; /* Default to black, Tailwind text-brand-text will be primary */
+        }
+        .nav-link-custom-hover:hover {
+            text-shadow: 0 0 8px #c39020, 0 0 10px #c39020, 0 0 12px #c39020;
+        }
+        .modal {
+            position: fixed; left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background-color: white; padding: 2rem; border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            width: 90%; max-width: 500px; text-align: center;
         }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased text-brand-text bg-gray-100"> {/* MODIFIED: body text and bg */}
 
-    <header class="bg-white shadow-sm py-4">
+    <header class="bg-brand-header-bg shadow-sm py-4"> {/* MODIFIED: header bg */}
         <nav class="container mx-auto px-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-[#0F3A5C]">
+            <a href="index.html">
                 <img src="images/stratagem-ai-logo.png" alt="Stratagem AI Logo" class="h-10 md:h-12 w-auto">
             </a>
             <div id="mobile-menu-nav" class="hidden md:flex space-x-6">
-                <a href="index.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Home</a>
-                <a href="services.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Services</a>
-                <a href="about.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">About Us</a>
-                <a href="resources.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Resources</a>
-                <a href="contact.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Contact</a>
+                 {/* MODIFIED Nav Links */}
+                <a href="index.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">Home</a>
+                <a href="services.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">Services</a>
+                <a href="about.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">About Us</a>
+                <a href="resources.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">Resources</a>
+                <a href="contact.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">Contact</a>
             </div>
-            <button class="md:hidden text-[#2C2C2C] focus:outline-none" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu-nav">
+            <button class="md:hidden text-brand-navy focus:outline-none" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu-nav"> {/* MODIFIED: Mobile menu button color */}
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
@@ -41,57 +55,60 @@
     </header>
 
     <main>
-        <section class="py-16 md:py-24 bg-white">
+        <section class="py-16 md:py-24 bg-white"> {/* MODIFIED: section bg (if different from body) */}
             <div class="container mx-auto px-4 text-center max-w-2xl">
-                <h1 class="text-3xl md:text-4xl font-bold mb-6 text-[#0F3A5C]">
+                <h1 class="text-3xl md:text-4xl font-bold mb-6 text-brand-navy"> {/* MODIFIED: text color */}
                     Download Your AI Underwriting Readiness & Compliance Checklist
                 </h1>
-                <p class="text-lg text-[#2C2C2C] mb-8">
+                <p class="text-lg text-brand-text mb-8"> {/* MODIFIED: text color */}
                     To access your free checklist, please provide your business contact details. We require a business email to ensure the relevance of our resources.
                 </p>
 
                 <form id="checklistForm" class="bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-200">
                     <div class="mb-5 text-left">
-                        <label for="name" class="block text-gray-700 text-sm font-medium mb-2">Your Name</label>
-                        <input type="text" id="name" name="name" class="form-input" required>
+                        <label for="name" class="block text-brand-navy text-sm font-medium mb-2">Your Name</label> {/* MODIFIED: label color */}
+                        <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" required>
                     </div>
                     <div class="mb-5 text-left">
-                        <label for="businessName" class="block text-gray-700 text-sm font-medium mb-2">Business Name</label>
-                        <input type="text" id="businessName" name="businessName" class="form-input" required>
+                        <label for="businessName" class="block text-brand-navy text-sm font-medium mb-2">Business Name</label> {/* MODIFIED: label color */}
+                        <input type="text" id="businessName" name="businessName" class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" required>
                     </div>
                     <div class="mb-6 text-left">
-                        <label for="email" class="block text-gray-700 text-sm font-medium mb-2">Business Email</label>
-                        <input type="email" id="email" name="email" class="form-input" required>
-                        <p id="emailError" class="error-message hidden">Please enter a valid business email address (generic domains like Gmail, Yahoo, Hotmail are not allowed).</p>
+                        <label for="email" class="block text-brand-navy text-sm font-medium mb-2">Business Email</label> {/* MODIFIED: label color */}
+                        <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" required>
+                        <p id="emailError" class="text-red-600 text-sm mt-1 hidden">Please enter a valid business email address (generic domains like Gmail, Yahoo, Hotmail are not allowed).</p>
                     </div>
-                    <button type="submit" class="btn-primary w-full">
+                    {/* MODIFIED Button Styling */}
+                    <button type="submit" class="w-full bg-brand-gold text-brand-text border-2 border-brand-text hover:bg-brand-gold-darker font-medium py-3 px-6 rounded-md transition-colors duration-300 transform hover:-translate-y-0.5">
                         Download Checklist
                     </button>
-                    <div id="loadingIndicator" class="hidden mt-4 text-[#0F3A5C] font-semibold">Submitting...</div>
-                    <div id="submissionStatus" class="success-message hidden"></div>
+                    <div id="loadingIndicator" class="hidden mt-4 text-brand-navy font-semibold">Submitting...</div> {/* MODIFIED: text color */}
+                    <div id="submissionStatus" class="text-lg mt-4 hidden"></div> {/* Success/Error messages will have their color set by JS or specific classes */}
                 </form>
             </div>
         </section>
 
         <div id="downloadModal" class="modal hidden">
             <div class="modal-content">
-                <h3 class="text-2xl font-bold text-[#0F3A5C] mb-4">Thank You!</h3>
-                <p class="text-lg text-[#2C2C2C] mb-6">Your details have been submitted. You can now download your checklist.</p>
-                <a href="assets/AI_Underwriting_Readiness_Checklist_Placeholder.pdf" download class="btn-primary inline-block">
+                <h3 class="text-2xl font-bold text-brand-navy mb-4">Thank You!</h3> {/* MODIFIED: text color */}
+                <p class="text-lg text-brand-text mb-6">Your details have been submitted. You can now download your checklist.</p> {/* MODIFIED: text color */}
+                 {/* MODIFIED Button Styling */}
+                <a href="assets/AI_Underwriting_Readiness_Checklist_Placeholder.pdf" download class="inline-block bg-brand-gold text-brand-text border-2 border-brand-text hover:bg-brand-gold-darker font-medium py-2 px-6 rounded-md transition-colors duration-300 transform hover:-translate-y-0.5">
                     Click Here to Download
                 </a>
-                <button id="closeModal" class="btn-secondary mt-4">Close</button>
+                 {/* MODIFIED Button Styling for secondary action */}
+                <button id="closeModal" class="mt-4 bg-brand-gray-muted text-white hover:bg-brand-gray-slate font-medium py-2 px-6 rounded-md transition-colors duration-300">Close</button>
             </div>
         </div>
     </main>
 
-    <footer class="bg-gray-800 text-white py-8 rounded-t-xl">
+    <footer class="bg-gray-800 text-white py-8"> {/* Footer colors unchanged based on previous instructions, can be themed too if desired */}
         <div class="container mx-auto px-4 text-center text-sm">
             <p>&copy; 2025 Stratagem AI. All rights reserved.</p>
             <div class="mt-4 space-x-4">
-                <a href="#" class="hover:text-[#C49221]">Privacy Policy (Placeholder)</a>
-                <a href="#" class="hover:text-[#C49221]">Terms of Service (Placeholder)</a>
-                <a href="https://www.linkedin.com/company/stratagem-ai/" target="_blank" class="hover:text-[#C49221]">LinkedIn</a>
+                <a href="#" class="hover:text-brand-gold">Privacy Policy (Placeholder)</a> {/* MODIFIED: hover color */}
+                <a href="#" class="hover:text-brand-gold">Terms of Service (Placeholder)</a> {/* MODIFIED: hover color */}
+                <a href="https://www.linkedin.com/company/stratagem-ai/" target="_blank" class="hover:text-brand-gold">LinkedIn</a> {/* MODIFIED: hover color */}
             </div>
         </div>
     </footer>
@@ -101,33 +118,30 @@
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Firebase configuration (values from your previous console logs - ensure these are correct)
         const firebaseConfig = {
-            apiKey: "AIzaSyCVJQE6ZwgpN9H1kdPyg3ZuvJne891M9h8",
+            apiKey: "AIzaSyCVJQE6ZwgpN9H1kdPyg3ZuvJne891M9h8", // Replace with your actual Firebase config
             authDomain: "lead-generation-website-a6fee.firebaseapp.com",
             projectId: "lead-generation-website-a6fee",
-            storageBucket: "lead-generation-website-a6fee.firebasestorage.app", 
+            storageBucket: "lead-generation-website-a6fee.appspot.com", // Corrected: .appspot.com for storageBucket
             messagingSenderId: "251571123282",
-            appId: "1:251571123282:web:04c5bdbe46e6228809db8b", 
+            appId: "1:251571123282:web:04c5bdbe46e6228809db8b",
             measurementId: "G-XLD2182833"
         };
 
-        console.log("Attempting to initialize Firebase with config:", firebaseConfig);
+        // console.log("Attempting to initialize Firebase with config:", firebaseConfig); // Dev only
 
-        // Initialize Firebase robustly (prevents "duplicate-app" error)
         let app;
         if (getApps().length === 0) {
             app = initializeApp(firebaseConfig);
-            console.log("Firebase Initialized a new app.");
+            // console.log("Firebase Initialized a new app."); // Dev only
         } else {
-            app = getApp(); // Get the already initialized app
-            console.log("Firebase app already exists, getting instance.");
+            app = getApp();
+            // console.log("Firebase app already exists, getting instance."); // Dev only
         }
 
         const db = getFirestore(app);
         const auth = getAuth(app);
-
-        let userId = null; 
+        let userId = null;
 
         const genericDomains = [
             'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com',
@@ -160,28 +174,34 @@
 
         async function authenticateUser() {
             if (!auth) {
-                console.error("Firebase Auth service is not available for anonymous sign-in.");
-                if(submissionStatus) submissionStatus.textContent = "Error initializing auth. Please try again.";
-                if(submissionStatus) submissionStatus.classList.remove('hidden');
+                // console.error("Firebase Auth service is not available."); // Dev only
+                if(submissionStatus) {
+                    submissionStatus.textContent = "Error initializing. Please try again.";
+                    submissionStatus.className = 'text-red-600 text-lg mt-4'; // Error style
+                    submissionStatus.classList.remove('hidden');
+                }
                 if(loadingIndicator) loadingIndicator.classList.add('hidden');
                 return;
             }
             try {
                 const userCredential = await signInAnonymously(auth);
                 userId = userCredential.user.uid;
-                console.log("Signed in anonymously:", userId);
+                // console.log("Signed in anonymously:", userId); // Dev only
             } catch (error) {
-                console.error("Firebase anonymous authentication error:", error);
-                if(submissionStatus) submissionStatus.textContent = "Error during anonymous authentication. Refresh and try again.";
-                if(submissionStatus) submissionStatus.classList.remove('hidden');
+                // console.error("Firebase anonymous authentication error:", error); // Dev only
+                if(submissionStatus) {
+                     submissionStatus.textContent = "Auth error. Refresh and try again.";
+                     submissionStatus.className = 'text-red-600 text-lg mt-4'; // Error style
+                     submissionStatus.classList.remove('hidden');
+                }
                 if(loadingIndicator) loadingIndicator.classList.add('hidden');
             }
         }
 
-        if (app) { 
+        if (app) {
              authenticateUser();
         } else {
-            console.error("Firebase app not initialized before calling authenticateUser.");
+            // console.error("Firebase app not initialized before calling authenticateUser."); // Dev only
         }
 
         if(checklistForm) {
@@ -205,55 +225,56 @@
                 }
 
                 const domain = email.split('@')[1];
-                if (!domain) {
-                     if(emailError) emailError.textContent = "Invalid email format. Domain missing.";
-                     if(emailError) emailError.classList.remove('hidden');
-                     if(loadingIndicator) loadingIndicator.classList.add('hidden');
-                     return;
-                }
-                if (genericDomains.includes(domain)) {
-                    if(emailError) emailError.textContent = "Generic email domains (like Gmail, Yahoo, Hotmail) are not allowed. Please use a business email.";
+                if (!domain || genericDomains.includes(domain)) { // Combined check
+                    if(emailError) emailError.textContent = "Generic email domains (like Gmail, Yahoo) are not allowed. Please use a business email.";
                     if(emailError) emailError.classList.remove('hidden');
                     if(loadingIndicator) loadingIndicator.classList.add('hidden');
                     return;
                 }
 
                 if (!userId) {
-                    if(submissionStatus) submissionStatus.textContent = "Authentication not ready. Please refresh and try again.";
-                    if(submissionStatus) submissionStatus.classList.remove('hidden');
+                    if(submissionStatus) {
+                        submissionStatus.textContent = "Authentication not ready. Please refresh and try again.";
+                        submissionStatus.className = 'text-red-600 text-lg mt-4'; // Error style
+                        submissionStatus.classList.remove('hidden');
+                    }
                     if(loadingIndicator) loadingIndicator.classList.add('hidden');
-                    console.error("Firebase not authenticated for submission. userId is null.");
+                    // console.error("Firebase not authenticated for submission. userId is null."); // Dev only
                     return;
                 }
 
                 try {
-                    const leadsCollectionRef = collection(db, "leads"); // Using top-level "leads" collection
-
+                    const leadsCollectionRef = collection(db, "leads");
                     await addDoc(leadsCollectionRef, {
                         name: name,
                         businessName: businessName,
                         email: email,
-                        timestamp: serverTimestamp(), // Uses Firestore server's timestamp
+                        timestamp: serverTimestamp(),
                         userId: userId
                     });
 
-                    if(submissionStatus) submissionStatus.textContent = "Success! Your details have been recorded.";
-                    if(submissionStatus) submissionStatus.classList.remove('hidden');
+                    if(submissionStatus) {
+                        submissionStatus.textContent = "Success! Your details have been recorded.";
+                        submissionStatus.className = 'text-green-600 text-lg mt-4'; // Success style
+                        submissionStatus.classList.remove('hidden');
+                    }
                     if(checklistForm) checklistForm.reset();
                     showModal();
 
                 } catch (error) {
-                    console.error("Error adding document to Firestore:", error);
-                    if(submissionStatus) submissionStatus.textContent = `Error submitting: ${error.message}. Please try again.`;
-                    if(submissionStatus) submissionStatus.classList.remove('hidden');
+                    // console.error("Error adding document to Firestore:", error); // Dev only
+                    if(submissionStatus) {
+                        submissionStatus.textContent = `Error submitting. Please try again.`; // Simplified error for user
+                        submissionStatus.className = 'text-red-600 text-lg mt-4'; // Error style
+                        submissionStatus.classList.remove('hidden');
+                    }
                 } finally {
                     if(loadingIndicator) loadingIndicator.classList.add('hidden');
                 }
             });
         } else {
-            console.error("Checklist form (checklistForm) not found on this page!");
+            // console.error("Checklist form (checklistForm) not found!"); // Dev only
         }
     </script>
 </body>
 </html>
-

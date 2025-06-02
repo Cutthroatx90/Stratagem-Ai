@@ -7,32 +7,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="dist/output.css" rel="stylesheet">
     <style>
-        /* Minimal fallback styles - primary styling should come from output.css */
         html {
             scroll-behavior: smooth;
             font-family: 'Inter', sans-serif;
         }
         body {
-            background-color: #F8F5EE; /* Fallback - ensure this matches your src/input.css body style */
-            color: #2C2C2C; /* Fallback - ensure this matches your src/input.css body style */
+            color: #000000;
+        }
+        .nav-link-custom-hover:hover {
+            text-shadow: 0 0 8px #c39020, 0 0 10px #c39020, 0 0 12px #c39020;
+        }
+        /* Assuming .section-gradient has its own background defined in output.css or inline */
+        .section-gradient {
+             /* Example: background: linear-gradient(to right, #0f3253, #1e5784); */
+             /* Text on this gradient will be white as per original design */
         }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased text-brand-text bg-gray-100"> {/* MODIFIED: body text and bg */}
 
-    <header class="bg-white shadow-sm py-4">
+    <header class="bg-brand-header-bg shadow-sm py-4"> {/* MODIFIED: header bg */}
         <nav class="container mx-auto px-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-[#0F3A5C]">
+            <a href="index.html">
                 <img src="images/stratagem-ai-logo.png" alt="Stratagem AI Logo" class="h-10 md:h-12 w-auto">
             </a>
             <div id="mobile-menu-nav" class="hidden md:flex space-x-6">
-                <a href="index.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Home</a>
-                <a href="services.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Services</a>
-                <a href="about.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">About Us</a>
-                <a href="resources.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Resources</a>
-                <a href="contact.html" class="text-[#2C2C2C] hover:text-[#0F3A5C] font-medium">Contact</a>
+                <a href="index.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">Home</a>
+                <a href="services.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">Services</a>
+                <a href="about.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">About Us</a>
+                <a href="resources.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">Resources</a>
+                <a href="contact.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">Contact</a>
             </div>
-            <button class="md:hidden text-[#2C2C2C] focus:outline-none" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu-nav">
+            <button class="md:hidden text-brand-navy focus:outline-none" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu-nav"> {/* MODIFIED: Mobile menu button color */}
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
@@ -41,6 +47,7 @@
     </header>
 
     <main>
+        {/* Assuming section-gradient has a dark background, text-white is appropriate here */}
         <section class="section-gradient text-white py-20 md:py-32 rounded-b-xl shadow-lg">
             <div class="container mx-auto px-4 text-center">
                 <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
@@ -49,68 +56,94 @@
                 <p class="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-90">
                     Access our expert insights, checklists, and guides to navigate AI adoption, optimize risk, and ensure compliance in lending.
                 </p>
-                <a href="checklist-download.html" class="btn-primary bg-white text-[#0F3A5C] hover:bg-gray-100">
+                {/* MODIFIED Button Styling */}
+                <a href="checklist-download.html" class="inline-block bg-brand-gold text-brand-text border-2 border-brand-text hover:bg-brand-gold-darker font-medium py-3 px-6 rounded-md transition-colors duration-300 transform hover:-translate-y-0.5">
                     Download Our AI Readiness Checklist
                 </a>
             </div>
         </section>
 
-        <section class="py-16 md:py-24 bg-white">
+        <section class="py-16 md:py-24 bg-white"> {/* MODIFIED: section bg */}
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#0F3A5C]">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-brand-navy"> {/* MODIFIED: text color */}
                     Explore Our Insights & Tools
                 </h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-gray-50 p-6 rounded-xl shadow-md border border-gray-200 text-center">
-                        <h3 class="text-xl font-semibold text-[#0F3A5C] mb-3">AI Underwriting Readiness & Compliance Checklist</h3>
-                        <p class="text-[#2C2C2C] mb-4">
-                            Assess your institution's preparedness for ethical and compliant AI integration in underwriting.
-                        </p>
-                        <a href="checklist-download.html" class="btn-secondary">Get the Checklist</a>
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-md border border-gray-200 text-center flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-semibold text-brand-navy mb-3">AI Underwriting Readiness & Compliance Checklist</h3> {/* MODIFIED: text color */}
+                            <p class="text-brand-text mb-4"> {/* MODIFIED: text color */}
+                                Assess your institution's preparedness for ethical and compliant AI integration in underwriting.
+                            </p>
+                        </div>
+                        {/* MODIFIED Button Styling */}
+                        <a href="checklist-download.html" class="self-center mt-4 inline-block bg-brand-gold text-brand-text border-2 border-brand-text hover:bg-brand-gold-darker font-medium py-2 px-6 rounded-md transition-colors duration-300 transform hover:-translate-y-0.5">Get the Checklist</a>
                     </div>
 
-                    <div class="bg-gray-50 p-6 rounded-xl shadow-md border border-gray-200 text-center">
-                        <h3 class="text-xl font-semibold text-[#0F3A5C] mb-3">Guide: Navigating AI Bias in Lending</h3>
-                        <p class="text-[#2C2C2C] mb-4">
-                            Understand the challenges of algorithmic bias and strategies for fair lending compliance.
-                        </p>
-                        <a href="#" class="btn-secondary">Read Article (Placeholder)</a>
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-md border border-gray-200 text-center flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-semibold text-brand-navy mb-3">Guide: Navigating AI Bias in Lending</h3> {/* MODIFIED: text color */}
+                            <p class="text-brand-text mb-4"> {/* MODIFIED: text color */}
+                                Understand the challenges of algorithmic bias and strategies for fair lending compliance.
+                            </p>
+                        </div>
+                         {/* MODIFIED Button Styling - Placeholder link */}
+                        <a href="#" class="self-center mt-4 inline-block bg-brand-gold text-brand-text border-2 border-brand-text hover:bg-brand-gold-darker font-medium py-2 px-6 rounded-md transition-colors duration-300 transform hover:-translate-y-0.5">Read Article (Placeholder)</a>
                     </div>
 
-                    <div class="bg-gray-50 p-6 rounded-xl shadow-md border border-gray-200 text-center">
-                        <h3 class="text-xl font-semibold text-[#0F3A5C] mb-3">Whitepaper: The ROI of Explainable AI (XAI)</h3>
-                        <p class="text-[#2C2C2C] mb-4">
-                            Discover how XAI not only ensures compliance but also drives tangible business value.
-                        </p>
-                        <a href="#" class="btn-secondary">Download Whitepaper (Placeholder)</a>
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-md border border-gray-200 text-center flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-semibold text-brand-navy mb-3">Whitepaper: The ROI of Explainable AI (XAI)</h3> {/* MODIFIED: text color */}
+                            <p class="text-brand-text mb-4"> {/* MODIFIED: text color */}
+                                Discover how XAI not only ensures compliance but also drives tangible business value.
+                            </p>
+                        </div>
+                         {/* MODIFIED Button Styling - Placeholder link */}
+                        <a href="#" class="self-center mt-4 inline-block bg-brand-gold text-brand-text border-2 border-brand-text hover:bg-brand-gold-darker font-medium py-2 px-6 rounded-md transition-colors duration-300 transform hover:-translate-y-0.5">Download Whitepaper (Placeholder)</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="py-16 md:py-24 bg-[#F0ECE1] text-center">
+        <section class="py-16 md:py-24 bg-[#F0ECE1] text-center"> {/* This bg color #F0ECE1 is custom. Ensure text has contrast or change bg to a brand color/neutral. */}
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl md:text-4xl font-bold text-[#0F3A5C] mb-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-navy mb-6"> {/* MODIFIED: text color */}
                     Have a Specific Challenge?
                 </h2>
-                <p class="text-lg text-[#2C2C2C] mb-8 max-w-2xl mx-auto">
+                <p class="text-lg text-brand-text mb-8 max-w-2xl mx-auto"> {/* MODIFIED: text color */}
                     Our team is ready to discuss your unique needs and how Stratagem AI can deliver tailored solutions.
                 </p>
-                <a href="contact.html" class="btn-primary">Schedule a Consultation</a>
+                 {/* MODIFIED Button Styling */}
+                <a href="contact.html" class="inline-block bg-brand-gold text-brand-text border-2 border-brand-text hover:bg-brand-gold-darker font-medium py-3 px-6 rounded-md transition-colors duration-300 transform hover:-translate-y-0.5">Schedule a Consultation</a>
             </div>
         </section>
     </main>
 
-    <footer class="bg-gray-800 text-white py-8 rounded-t-xl">
+    <footer class="bg-gray-800 text-white py-8"> {/* Footer colors unchanged */}
         <div class="container mx-auto px-4 text-center text-sm">
             <p>&copy; 2025 Stratagem AI. All rights reserved.</p>
             <div class="mt-4 space-x-4">
-                <a href="#" class="hover:text-[#C49221]">Privacy Policy (Placeholder)</a>
-                <a href="#" class="hover:text-[#C49221]">Terms of Service (Placeholder)</a>
-                <a href="https://www.linkedin.com/company/stratagem-ai/" target="_blank" class="hover:text-[#C49221]">LinkedIn</a>
+                <a href="#" class="hover:text-brand-gold">Privacy Policy (Placeholder)</a> {/* MODIFIED: hover color */}
+                <a href="#" class="hover:text-brand-gold">Terms of Service (Placeholder)</a> {/* MODIFIED: hover color */}
+                <a href="https://www.linkedin.com/company/stratagem-ai/" target="_blank" class="hover:text-brand-gold">LinkedIn</a> {/* MODIFIED: hover color */}
             </div>
         </div>
     </footer>
+    
+    {/* Add Mobile Menu JS here if not in a separate file */}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuButton = document.querySelector('header nav button[aria-label="Open menu"]');
+            const mobileMenuNav = document.getElementById('mobile-menu-nav');
 
+            if (menuButton && mobileMenuNav) {
+                menuButton.addEventListener('click', function () {
+                    const isCurrentlyHidden = mobileMenuNav.classList.contains('hidden');
+                    mobileMenuNav.classList.toggle('hidden', !isCurrentlyHidden); // Explicitly show if hidden, hide if shown
+                    menuButton.setAttribute('aria-expanded', isCurrentlyHidden); 
+                });
+            }
+        });
+    </script>
 </body>
 </html>
