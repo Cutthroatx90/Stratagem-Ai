@@ -17,10 +17,10 @@
         .nav-link-custom-hover:hover {
             text-shadow: 0 0 8px #c39020, 0 0 10px #c39020, 0 0 12px #c39020;
         }
-        /* .hero-gradient and .section-gradient are assumed to have backgrounds defined elsewhere (e.g. output.css or more specific CSS if needed) */
+        /* .section-gradient is assumed to have its own background defined elsewhere (e.g. output.css or more specific CSS if needed) */
         /* For example:
-        .hero-gradient, .section-gradient {
-            background: linear-gradient(to right, #0f3253, #1e5784); // Example: Using brand-navy to a lighter variant
+        .section-gradient {
+            background: linear-gradient(to right, #some-other-blue, #another-blue);
         }
         */
     </style>
@@ -48,7 +48,8 @@
     </header>
 
     <main>
-        <section id="hero" class="hero-gradient text-white py-20 md:py-32 rounded-b-xl shadow-lg"> {/* Assuming hero-gradient class provides its own background */}
+        {/* MODIFIED: Changed hero-gradient to bg-brand-navy */}
+        <section id="hero" class="bg-brand-navy text-white py-20 md:py-32 rounded-b-xl shadow-lg"> 
             <div class="container mx-auto px-4 text-center">
                 <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
                     AI-Powered Underwriting & Risk Optimization for <br class="hidden md:inline"> Community Banks & Credit Unions. Ensure Compliant Growth.
@@ -110,7 +111,8 @@
             </div>
         </section>
 
-        <section class="py-16 md:py-24 section-gradient text-white rounded-t-xl shadow-lg text-center"> {/* Assuming section-gradient provides its own background */}
+        {/* This section-gradient remains unchanged unless you specify otherwise. It uses its own gradient and text-white. */}
+        <section class="py-16 md:py-24 section-gradient text-white rounded-t-xl shadow-lg text-center"> 
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl md:text-4xl font-bold mb-6">
                     Access Valuable Resources
