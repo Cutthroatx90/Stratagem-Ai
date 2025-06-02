@@ -14,7 +14,7 @@
             position: fixed; left: 0; top: 0; width: 100%; height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
             display: flex; align-items: center; justify-content: center;
-            z-index: 1000;
+            z-index: 1000; /* Ensure modal is on top */
         }
         .modal-content {
             background-color: white; padding: 2rem; border-radius: 0.75rem;
@@ -31,7 +31,6 @@
                 <img src="images/stratagem-ai-logo.png" alt="Stratagem AI Logo" class="h-10 md:h-12 w-auto">
             </a>
             <div id="mobile-menu-nav" class="hidden md:flex space-x-6">
-                {/* MODIFIED Nav Links text color */}
                 <a href="index.html" class="text-brand-text nav-link-custom-hover font-medium">Home</a>
                 <a href="services.html" class="text-brand-text nav-link-custom-hover font-medium">Services</a>
                 <a href="about.html" class="text-brand-text nav-link-custom-hover font-medium">About Us</a>
@@ -50,10 +49,10 @@
         <section class="py-16 md:py-24 bg-white">
             <div class="container mx-auto px-4 text-center max-w-2xl">
                 <h1 class="text-3xl md:text-4xl font-bold mb-6 text-brand-navy">
-                    Download Your AI Underwriting Readiness & Compliance Checklist
+                    AI Underwriting Readiness & Compliance Checklist
                 </h1>
                 <p class="text-lg text-brand-text mb-8">
-                    To access your free checklist, please provide your business contact details. We require a business email to ensure the relevance of our resources. The checklist will be emailed to you.
+                    To receive your free checklist by email, please provide your business contact details. We require a business email to ensure the relevance of our resources.
                 </p>
 
                 <form id="checklistForm" class="bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-200">
@@ -79,17 +78,11 @@
             </div>
         </section>
 
-        <div id="downloadModal" class="modal hidden"> {/* Ensure 'hidden' is present by default */}
+        <div id="downloadModal" class="modal hidden">
             <div class="modal-content">
                 <h3 class="text-2xl font-bold text-brand-navy mb-4">Thank You!</h3>
-                {/* MODIFIED: Message for email instead of download */}
-                <p class="text-lg text-brand-text mb-6">Your details have been submitted. The checklist will be emailed to you shortly at the address you provided.</p>
-                {/* REMOVED: Direct download link 
-                <a href="assets/AI_Underwriting_Readiness_Checklist_Placeholder.pdf" download class="inline-block bg-brand-gold text-brand-text border-2 border-brand-text hover:bg-brand-gold-darker font-medium py-2 px-6 rounded-md transition-colors duration-300 transform hover:-translate-y-0.5">
-                    Click Here to Download
-                </a> 
-                */}
-                <button id="closeModal" class="mt-4 bg-brand-gray-muted text-white hover:bg-brand-gray-slate font-medium py-2 px-6 rounded-md transition-colors duration-300">Close</button>
+                <p class="text-lg text-brand-text mb-6" id="modalSuccessMessage">Your details have been submitted. The checklist will be emailed to you shortly.</p>
+                <button id="closeModal" type="button" class="mt-4 bg-brand-gray-muted text-white hover:bg-brand-gray-slate font-medium py-2 px-6 rounded-md transition-colors duration-300">Close</button>
             </div>
         </div>
     </main>
@@ -110,17 +103,14 @@
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Ensure your Firebase config is correct and secure.
-        // It's generally recommended to manage API keys and configuration via Firebase console settings
-        // and ensure your Firestore security rules are robust.
         const firebaseConfig = {
-            apiKey: "AIzaSyCVJQE6ZwgpN9H1kdPyg3ZuvJne891M9h8", // Replace with your actual Firebase config
+            apiKey: "AIzaSyCVJQE6ZwgpN9H1kdPyg3ZuvJne891M9h8",
             authDomain: "lead-generation-website-a6fee.firebaseapp.com",
             projectId: "lead-generation-website-a6fee",
-            storageBucket: "lead-generation-website-a6fee.appspot.com", // Standard format for default bucket
+            storageBucket: "lead-generation-website-a6fee.appspot.com", // Using standard .appspot.com
             messagingSenderId: "251571123282",
             appId: "1:251571123282:web:04c5bdbe46e6228809db8b",
-            measurementId: "G-XLD2182833" // Optional: if you use Google Analytics
+            measurementId: "G-XLD2182833" 
         };
 
         let app;
@@ -148,64 +138,94 @@
         const emailError = document.getElementById('emailError');
         const loadingIndicator = document.getElementById('loadingIndicator');
         const submissionStatus = document.getElementById('submissionStatus');
-        const downloadModal = document.getElementById('downloadModal');
-        const closeModalButton = document.getElementById('closeModal');
+        
+        // --- Modal Element Getters ---
+        // It's better to get these elements once the DOM is loaded or ensure they exist.
+        // For now, accessing them directly and checking for null.
+        const downloadModalElement = document.getElementById('downloadModal');
+        const closeModalButtonElement = document.getElementById('closeModal');
+        const modalSuccessMessageElement = document.getElementById('modalSuccessMessage');
 
-        // MODIFIED: Explicitly hide modal on script load as a failsafe
-        if (downloadModal) {
-            downloadModal.classList.add('hidden');
-        }
-
-        function showModal(emailForMessage) { // MODIFIED to accept email for message
-            if(downloadModal) {
-                const modalMessage = downloadModal.querySelector('p'); // Get the paragraph in the modal
-                if (modalMessage) {
-                     // MODIFIED: Update message to indicate email will be sent
-                    modalMessage.textContent = `Your details have been submitted. The checklist will be emailed to you shortly at ${emailForMessage}.`;
+        // --- Modal Functions ---
+        function showSuccessModal(submittedEmail) {
+            if (downloadModalElement) {
+                console.log("Attempting to show success modal for email:", submittedEmail);
+                if (modalSuccessMessageElement) {
+                    modalSuccessMessageElement.textContent = `Thank you! Your details have been submitted. The checklist will be emailed to you shortly at ${submittedEmail}.`;
+                } else {
+                    console.error("Modal success message element not found!");
                 }
-                downloadModal.classList.remove('hidden');
+                downloadModalElement.classList.remove('hidden');
+                console.log("Modal 'hidden' class removed.");
+            } else {
+                console.error("Download modal element not found when trying to show!");
             }
         }
 
-        function hideModal() {
-            if(downloadModal) {
-                downloadModal.classList.add('hidden');
+        function hideSuccessModal() {
+            if (downloadModalElement) {
+                console.log("Attempting to hide success modal.");
+                downloadModalElement.classList.add('hidden');
+                console.log("Modal 'hidden' class added.");
+            } else {
+                console.error("Download modal element not found when trying to hide!");
             }
         }
 
-        if(closeModalButton) {
-            closeModalButton.addEventListener('click', (event) => {
-                event.preventDefault(); // Good practice for buttons in modals
-                hideModal();
+        // --- Event Listeners and Initial Setup ---
+        // This script runs after the HTML is parsed because of type="module" (deferred by default).
+        
+        // Ensure modal is hidden on initial load (robust check)
+        if (downloadModalElement) {
+            downloadModalElement.classList.add('hidden');
+            console.log("Modal explicitly hidden on script initialization.");
+        } else {
+            console.warn("Download modal element not found on script initialization. This might be an issue if it's dynamically loaded, but it's expected to be in the HTML.");
+        }
+
+        // Setup close button listener
+        if (closeModalButtonElement) {
+            closeModalButtonElement.addEventListener('click', function(event) {
+                event.preventDefault(); // Good practice for buttons that don't submit forms
+                console.log("Close modal button clicked.");
+                hideSuccessModal();
             });
+            console.log("Close modal button event listener attached.");
+        } else {
+            console.error("Close modal button element not found! Cannot attach listener.");
         }
 
         async function authenticateUser() {
+            // ... (authentication logic remains the same)
             if (!auth) {
+                console.error("Firebase Auth service is not available.");
                 if(submissionStatus) {
                     submissionStatus.textContent = "Error initializing. Please try again.";
                     submissionStatus.className = 'text-red-600 text-lg mt-4'; 
                     submissionStatus.classList.remove('hidden');
                 }
                 if(loadingIndicator) loadingIndicator.classList.add('hidden');
-                return;
+                return false; // Indicate failure
             }
             try {
                 const userCredential = await signInAnonymously(auth);
                 userId = userCredential.user.uid;
+                console.log("Signed in anonymously:", userId);
+                return true; // Indicate success
             } catch (error) {
+                console.error("Firebase anonymous authentication error:", error);
                 if(submissionStatus) {
                      submissionStatus.textContent = "Auth error. Refresh and try again.";
                      submissionStatus.className = 'text-red-600 text-lg mt-4';
                      submissionStatus.classList.remove('hidden');
                 }
                 if(loadingIndicator) loadingIndicator.classList.add('hidden');
+                return false; // Indicate failure
             }
         }
 
-        if (app) { 
-             authenticateUser();
-        }
+        // Authenticate user when script loads
+        authenticateUser(); // Call it once to get userId
 
         if(checklistForm) {
             checklistForm.addEventListener('submit', async (e) => {
@@ -235,43 +255,46 @@
                     return;
                 }
 
-                if (!userId) {
-                    if(submissionStatus) {
-                        submissionStatus.textContent = "Authentication not ready. Please refresh and try again.";
-                        submissionStatus.className = 'text-red-600 text-lg mt-4'; 
-                        submissionStatus.classList.remove('hidden');
+                if (!userId) { // Check if userId is available
+                    console.warn("User ID not available at submission, attempting to re-authenticate...");
+                    const authSuccess = await authenticateUser(); // Try to authenticate again
+                    if (!authSuccess || !userId) { // Check again
+                        if(submissionStatus) {
+                            submissionStatus.textContent = "Authentication failed. Please refresh and try again.";
+                            submissionStatus.className = 'text-red-600 text-lg mt-4'; 
+                            submissionStatus.classList.remove('hidden');
+                        }
+                        if(loadingIndicator) loadingIndicator.classList.add('hidden');
+                        return;
                     }
-                    if(loadingIndicator) loadingIndicator.classList.add('hidden');
-                    return;
                 }
-
+                
+                console.log("Submitting lead for:", email, "by userId:", userId);
                 try {
                     const leadsCollectionRef = collection(db, "leads"); 
                     await addDoc(leadsCollectionRef, {
                         name: name,
                         businessName: businessName,
-                        email: email, // Email is saved to Firestore, can be used by Cloud Function
+                        email: email,
                         timestamp: serverTimestamp(),
                         userId: userId,
-                        checklistInterest: true // Optional: flag that this lead is for the checklist
+                        checklistInterest: true 
                     });
 
                     if(submissionStatus) {
-                        // MODIFIED: Success message indicates email will be sent
                         submissionStatus.textContent = `Success! The checklist will be emailed to ${email}.`;
                         submissionStatus.className = 'text-green-600 text-lg mt-4';
                         submissionStatus.classList.remove('hidden');
                     }
                     if(checklistForm) checklistForm.reset();
-                    showModal(email); // MODIFIED: Pass email to showModal to confirm where it's being sent
+                    showSuccessModal(email); 
 
-                    // IMPORTANT: Actual email sending must be handled by a backend service,
-                    // e.g., a Firebase Cloud Function triggered by this new document in Firestore.
-                    // This client-side code does NOT send the email.
+                    console.log("Lead submitted to Firestore. Email automation needs backend setup.");
 
                 } catch (error) {
+                    console.error("Error adding document to Firestore:", error);
                     if(submissionStatus) {
-                        submissionStatus.textContent = `Error submitting. Please try again.`;
+                        submissionStatus.textContent = `Error submitting: ${error.message}. Please try again.`;
                         submissionStatus.className = 'text-red-600 text-lg mt-4';
                         submissionStatus.classList.remove('hidden');
                     }
@@ -279,27 +302,23 @@
                     if(loadingIndicator) loadingIndicator.classList.add('hidden');
                 }
             });
+        } else {
+            console.error("Checklist form (checklistForm) not found!");
         }
         
         // Mobile Menu Toggle Script (if not in a global file)
-        document.addEventListener('DOMContentLoaded', function () {
-            const menuButton = document.querySelector('header nav button[aria-label="Open menu"]');
-            const mobileMenuNav = document.getElementById('mobile-menu-nav');
+        // It's better to have this in a DOMContentLoaded if elements are guaranteed,
+        // but module scripts defer by default.
+        const menuButton = document.querySelector('header nav button[aria-label="Open menu"]');
+        const mobileMenuNav = document.getElementById('mobile-menu-nav');
 
-            // Added safeguard for modal being hidden, in case DOMContentLoaded fires late
-            const initialModal = document.getElementById('downloadModal');
-            if(initialModal) {
-                initialModal.classList.add('hidden');
-            }
-
-            if (menuButton && mobileMenuNav) {
-                menuButton.addEventListener('click', function () {
-                    const isCurrentlyHidden = mobileMenuNav.classList.contains('hidden');
-                    mobileMenuNav.classList.toggle('hidden', !isCurrentlyHidden);
-                    menuButton.setAttribute('aria-expanded', isCurrentlyHidden); 
-                });
-            }
-        });
+        if (menuButton && mobileMenuNav) {
+            menuButton.addEventListener('click', function () {
+                const isCurrentlyHidden = mobileMenuNav.classList.contains('hidden');
+                mobileMenuNav.classList.toggle('hidden', !isCurrentlyHidden);
+                menuButton.setAttribute('aria-expanded', isCurrentlyHidden); 
+            });
+        }
     </script>
 </body>
 </html>
