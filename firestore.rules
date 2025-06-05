@@ -1,9 +1,26 @@
 rules_version = '2';
-
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if false;
+    match /leads/{leadId} {
+      allow create: if request.auth != null &&
+                       request.resource.data.name is string &&
+                       request.resource.data.businessName is string &&
+                       request.resource.data.email is string &&
+                       request.resource.data.email.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$") &&
+                       request.resource.data.name.size() > 0 && request.resource.data.name.size() < 256 &&
+                       request.resource.data.businessName.size() > 0 && request.resource.data.businessName.size() < 256 &&
+                       request.resource.data.email.size() < 256 &&
+                       request.resource.data.timestamp == request.time &&
+                       // Add a check for the 'checklistInterest' field type
+                       request.resource.data.checklistInterest is bool && 
+                       // Update the hasOnly list to include 'checklistInterest'
+                       request.resource.data.keys().hasOnly(['name', 'businessName', 'email', 'timestamp', 'userId', 'checklistInterest']) &&
+                       // Update the size to match the 6 fields
+                       request.resource.data.size() == 6;
+
+      // Your existing read/update/delete rules remain the same for now
+      allow read, list, update, delete: if request.auth != null && request.auth.token.admin == true;
+      // If no admin role is set up yet, use 'allow read, list, update, delete: if false;'
     }
   }
 }

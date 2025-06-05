@@ -6,19 +6,6 @@
     <title>Contact Us - Stratagem AI</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="dist/output.css" rel="stylesheet">
-    <style>
-        html {
-            scroll-behavior: smooth;
-            font-family: 'Inter', sans-serif;
-        }
-        body {
-            color: #000000;
-        }
-        .nav-link-custom-hover:hover {
-            text-shadow: 0 0 8px #c39020, 0 0 10px #c39020, 0 0 12px #c39020;
-        }
-        /* .section-gradient assumed to have its own background definition */
-    </style>
 </head>
 <body class="antialiased text-brand-text bg-gray-100">
 
@@ -28,11 +15,12 @@
                 <img src="images/stratagem-ai-logo.png" alt="Stratagem AI Logo" class="h-10 md:h-12 w-auto">
             </a>
             <div id="mobile-menu-nav" class="hidden md:flex space-x-6">
-                <a href="index.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">Home</a>
-                <a href="services.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">Services</a>
-                <a href="about.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">About Us</a>
-                <a href="resources.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">Resources</a>
-                <a href="contact.html" class="text-brand-text-header-link nav-link-custom-hover font-medium">Contact</a>
+                <a href="index.html" class="text-brand-text nav-link-custom-hover font-medium">Home</a>
+                <a href="services.html" class="text-brand-text nav-link-custom-hover font-medium">Services</a>
+                <a href="about.html" class="text-brand-text nav-link-custom-hover font-medium">About Us</a>
+                <a href="resources.html" class="text-brand-text nav-link-custom-hover font-medium">Blog</a>
+                <a href="newsletter.html" class="text-brand-text nav-link-custom-hover font-medium">Newsletter</a>
+                <a href="contact.html" class="text-brand-text nav-link-custom-hover font-medium">Contact</a>
             </div>
             <button class="md:hidden text-brand-navy focus:outline-none" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu-nav">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -92,29 +80,15 @@
 
     <footer class="bg-gray-800 text-white py-8 rounded-t-xl">
         <div class="container mx-auto px-4 text-center text-sm">
-            <p>&copy; 2025 Stratagem AI. All rights reserved.</p>
+            <p>&copy; <span id="currentYear"></span> Stratagem AI. All rights reserved.</p>
             <div class="mt-4 space-x-4">
-                <a href="#" class="hover:text-brand-gold">Privacy Policy (Placeholder)</a>
-                <a href="#" class="hover:text-brand-gold">Terms of Service (Placeholder)</a>
+                <a href="privacy.html" class="hover:text-brand-gold">Privacy Policy</a>
+                <a href="terms.html" class="hover:text-brand-gold">Terms of Service</a>
                 <a href="https://www.linkedin.com/company/stratagem-ai/" target="_blank" class="hover:text-brand-gold">LinkedIn</a>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Mobile Menu Toggle Script
-        document.addEventListener('DOMContentLoaded', function () {
-            const menuButton = document.querySelector('header nav button[aria-label="Open menu"]');
-            const mobileMenuNav = document.getElementById('mobile-menu-nav');
-
-            if (menuButton && mobileMenuNav) {
-                menuButton.addEventListener('click', function () {
-                    const isCurrentlyHidden = mobileMenuNav.classList.contains('hidden');
-                    mobileMenuNav.classList.toggle('hidden', !isCurrentlyHidden);
-                    menuButton.setAttribute('aria-expanded', isCurrentlyHidden); 
-                });
-            }
-        });
-    </script>
+    <script src="js/main.js" defer></script>
 </body>
 </html>
